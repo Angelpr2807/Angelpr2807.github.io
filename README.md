@@ -10,6 +10,6 @@ Actualmente soy estudiante de la **Universidad Continental**, pero me gusta ser 
 
 Puededes ver algunos de mis trabajos en mi página web
 
-<a href="https://angelPerezRavelo.com" target="_blank" rel="noopener">AngelPerezRav.com</a>.
+<a href="https://angelpr2807.github.io/" target="_blank" rel="noopener">AngelPerezRav.com</a>.
 
 Si quieres tabajar conmigo no dudes en contactarme 😃
