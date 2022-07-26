@@ -1,9 +1,10 @@
 :root {
   --montserrat: "Montserrat", sans-serif;
-  --red: #ff5757;
+  --red: #c93434;
   --white: #f0e0b5;
   --black: #323333;
   --black2: #2a2b2bb2;
+  --black3: #1f1f1f;
   --step--3: clamp(0.65rem, calc(0.33rem + 0.89vw), 1.02rem);
   --step--2: clamp(0.75rem, calc(0.42rem + 1.11vw), 1.28rem);
   --step--1: clamp(1rem, calc(0.52rem + 1.39vw), 1.25rem);
@@ -11,8 +12,6 @@
   --step-1: clamp(1.6rem, calc(0.82rem + 2.17vw), 2.5rem);
   --step-2: clamp(1.83rem, calc(1.02rem + 2.72vw), 3.13rem);
 }
-
-/*------------------------ normalice -----------------------*/
 html {
   margin: 0;
   padding: 0;
@@ -20,13 +19,11 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
 }
-
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 *,
 *::before,
 *::before {
@@ -36,37 +33,29 @@ body {
   font-family: var(--montserrat);
   line-height: 2rem;
 }
-
 a {
   text-decoration: none;
   color: var(--white);
 }
-
 a:hover {
   text-decoration: underline;
   font-weight: bold;
 }
-
 img {
   max-width: 100%;
   height: auto;
 }
-
 h1 {
   font-size: var(--step-2);
 }
-
 h2 {
   font-size: var(--step-1);
   margin-bottom: 1rem;
   color: var(--black);
 }
-
 textarea {
   resize: none;
 }
-
-/*---------------------------components----------------------------*/
 .hero-img {
   width: 100%;
   height: 100vh;
@@ -77,7 +66,6 @@ textarea {
   background-size: cover;
   background-position: 50% 50%;
 }
-
 .modal {
   position: fixed;
   top: 0;
@@ -103,17 +91,12 @@ textarea {
 .modal .modal-content h2 {
   color: var(--black);
 }
-
-/*---------------------------utilitys----------------------------*/
 .circle {
   border-radius: 50%;
 }
-
 .none {
   display: none;
 }
-
-/*---------------------------site styles----------------------------*/
 #conoceme {
   display: flex;
   align-items: center;
@@ -130,7 +113,6 @@ textarea {
   max-width: 600px;
   font-size: var(--step-0);
 }
-
 #contacto form {
   display: flex;
   align-items: center;
@@ -149,7 +131,7 @@ textarea {
 #contacto form p.is-active {
   display: block;
   width: 100%;
-  color: #323333;
+  color: var(--white);
   font-weight: bold;
   margin-top: -2rem;
   font-size: var(--step-0);
@@ -160,7 +142,7 @@ textarea {
   margin-bottom: 2rem;
 }
 #contacto form legend {
-  color: var(--black);
+  color: var(--black3);
   font-weight: bold;
   font-size: var(--step-0);
 }
@@ -175,11 +157,8 @@ textarea {
 #contacto form *[required]::placeholder {
   color: #fff;
 }
-#contacto form *[required]:valid {
-  border-bottom: thin solid rgb(24, 143, 24);
-}
 #contacto form input[type="submit"] {
-  color: var(--red);
+  color: var(--black);
   background-color: var(--white);
   font-size: var(--step--1);
   font-weight: bold;
@@ -211,13 +190,11 @@ textarea {
 #contacto nav * {
   width: 50px;
 }
-
 #experiencia p {
   margin: 0 auto;
   font-size: var(--step-0);
   max-width: 600px;
 }
-
 footer {
   color: #fff;
   background-color: var(--black);
@@ -226,12 +203,10 @@ footer {
   font-size: var(--step-0);
   margin-bottom: 61px;
 }
-
 .hamburger {
   display: flex;
   align-items: center;
 }
-
 .hamburger-inner,
 .hamburger-inner:after,
 .hamburger-inner:before,
@@ -240,7 +215,6 @@ footer {
 .hamburger.is-active .hamburger-inner:before {
   background-color: var(--black);
 }
-
 header.hero-img {
   position: relative;
   color: #fff;
@@ -268,7 +242,6 @@ header.hero-img h2 {
 header.hero-img img {
   width: 150px;
 }
-
 hr {
   background-image: linear-gradient(
     to right,
@@ -282,7 +255,6 @@ hr {
   margin: 0.5rem;
   margin-bottom: 3rem;
 }
-
 nav.nav-bar {
   position: fixed;
   bottom: 0;
@@ -333,13 +305,12 @@ nav.nav-bar ul li a {
   font-size: 1.5rem;
   margin: 0 0.75rem;
 }
-
 #portafolio div {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-#portafolio button {
+#portafolio article {
   width: 90%;
   max-width: 400px;
   height: 300px;
@@ -349,16 +320,22 @@ nav.nav-bar ul li a {
   position: relative;
   cursor: pointer;
 }
-#portafolio button > img {
+#portafolio article h3 {
+  text-align: center;
+  color: #fff;
+  font-size: var(--step-0);
+}
+#portafolio article > img {
   border-radius: 10px;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   cursor: pointer;
 }
-#portafolio button:hover .desc-hover {
+#portafolio article:hover .desc-hover {
   opacity: 1;
 }
-#portafolio button:hover .desc-hover * {
+#portafolio article:hover .desc-hover * {
   margin: 0;
 }
 #portafolio .desc-hover {
@@ -373,6 +350,7 @@ nav.nav-bar ul li a {
   z-index: 100;
   color: #fff;
   opacity: 0;
+  border: none;
   border-radius: 10px;
   font-size: var(--step--1);
   background-color: var(--black2);
@@ -386,11 +364,9 @@ nav.nav-bar ul li a {
   margin: 50px;
   transition: margin 0.25s ease-in;
 }
-
 .row-up {
   display: none;
 }
-
 section {
   padding: 3rem 1.5rem;
 }
@@ -412,15 +388,13 @@ section:nth-child(2n + 1) hr {
     transparent
   );
 }
-
 #tecnologias div.grid {
   display: grid;
-  grid-template-columns: repeat(2, 150px);
+  grid-template-columns: repeat(1, 150px);
   row-gap: 2rem;
   justify-content: space-around;
   max-width: 900px;
   margin: 2rem auto 0;
-  padding: 1rem;
 }
 #tecnologias img {
   width: 100%;
@@ -460,7 +434,11 @@ section:nth-child(2n + 1) hr {
   opacity: 1;
   transform: translateY(-105px);
 }
-
+@media screen and (min-width: 500px) {
+  #tecnologias div.grid {
+    grid-template-columns: repeat(2, 150px);
+  }
+}
 @media screen and (min-width: 768px) {
   #tecnologias div.grid {
     grid-template-columns: repeat(3, 150px);
@@ -470,7 +448,6 @@ section:nth-child(2n + 1) hr {
   header.hero-img {
     flex-direction: row;
   }
-
   nav.nav-bar {
     position: static;
     display: inline-block;
@@ -498,7 +475,6 @@ section:nth-child(2n + 1) hr {
     color: var(--red);
     width: auto;
   }
-
   .row-up {
     position: fixed;
     bottom: 1rem;
@@ -518,11 +494,9 @@ section:nth-child(2n + 1) hr {
   .row-up img {
     filter: invert(1);
   }
-
   .none {
     display: none;
   }
-
   footer {
     margin-bottom: 0;
   }

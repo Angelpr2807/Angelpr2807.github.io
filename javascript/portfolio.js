@@ -5,10 +5,9 @@ export default function portfolioBtn() {
       e.target.matches("#portafolio button") ||
       e.target.matches("#portafolio button *")
     ) {
-      console.log(e.target.parentElement);
-      if (e.target.matches("img") || e.target.matches("h3")) {
+      if (e.target.matches("img") || e.target.matches("span")) {
         url = e.target.parentElement.parentElement.dataset.src;
-      } else if (e.target.matches("div")) {
+      } else if (e.target.matches("button")) {
         url = e.target.parentElement.dataset.src;
       }
       if (url) {
