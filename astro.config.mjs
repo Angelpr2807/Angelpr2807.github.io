@@ -10,8 +10,7 @@ import sectionize from '@hbsnow/rehype-sectionize';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://github.com/Angelpr2807',
-    base: 'Angelpr2807.github.io',
+    site: 'https://Angelpr2807.github.io',
     integrations: [mdx(), sitemap()],
     markdown: {
         rehypePlugins: [
