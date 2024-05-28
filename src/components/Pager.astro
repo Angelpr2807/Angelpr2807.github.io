@@ -57,7 +57,7 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
-            <h1>{Astro.url.pathname === "/blog" ? "Artículos recientes" : `Página ${current}`}</h1>
+            <h1>{Astro.url.pathname === "/blog" || current === undefined ? "Artículos recientes" : `Página ${current}`}</h1>
             <div id="search"></div>
 			<section>
                 <slot />
