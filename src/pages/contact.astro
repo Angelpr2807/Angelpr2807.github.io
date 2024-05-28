@@ -1,0 +1,48 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts.ts";
+import { SOCIAL_LINKS } from "../consts.ts";
+---
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Contáctame</h1>
+			<p>
+                ¿Tienes preguntas, sugerencias, o simplemente quieres decir hola? No dudes en enviarme un mensaje a través de mi <i>email</i> o mis redes sociales. ¡Espero saber de ti pronto!
+			</p> 
+            <p>
+                Trataré de responder tus mensajes tan pronto pueda, gracias por ponerte en contacto conmigo.
+            </p>
+            <br>
+            <ul>
+                <li>Linkedin: <a href={SOCIAL_LINKS.linkedin} target="_blank">/angelperezravelo</a>.</li>
+                <li>Gmail: <a href=`mailto:${SOCIAL_LINKS.gmail}` target="_blank">@angelperezravelo2807</a>.</li>
+                <li>Instagram: <a href={SOCIAL_LINKS.instagram} target="_blank">@angel_perezrav</a>.</li>
+            </ul>
+            <br>
+        </main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+body {
+    color: var(--foreground);
+    background-color: var(--background);
+}
+main{
+    margin: 1rem auto;
+    width: 90%;
+    max-width: 900px;
+}
+h1 {
+    text-align: center;
+}
+</style>

@@ -1,0 +1,126 @@
+---
+export type Props = {
+    pageHeadings : Array<{ depth: number; slug: string; text: string }[]>
+}
+
+const { pageHeadings } = Astro.props;
+
+const toc = pageHeadings.reduce((array, heading) => {
+  if (heading.depth === 2) {
+    array.push({ ...heading, subheadings: [] });
+  } else if (heading.depth === 3) {
+    array.at(-1)?.subheadings.push(heading);
+  }
+  return array;
+}, [] as HeadingWithSubheadings[]);
+
+---
+
+<div class="toc-container">
+    <nav class="toc" aria-label="Tabla de contenidos">
+        <h2>En este artículo</h2>
+        <ol>
+            {
+            toc.map((h) => 
+                (<li>
+                <a class="toc-link" href=`#${h.slug}`>{h.text}</a>
+                    {
+                        h.subheadings.length > 0 && (
+                        <ol>
+                            {h.subheadings.map((sub) => (
+                            <li>
+                                <a class="toc-link" href={`#${sub.slug}`}>{sub.text}</a>
+                            </li>
+                            ))}
+                        </ol>
+                    )}
+                </li>
+                ))
+            }
+        </ol> 
+    </nav>
+</div>
+
+<style>
+.toc-container {
+}
+nav.toc {
+    display: block;
+    position: sticky;
+    top: 7rem;
+    padding-left: 1rem;
+
+    h2 {
+        font-size: 1rem;
+    }
+}
+nav.toc > ol {
+    border-left: 2px solid rgba(var(--box-shadow-color), 0.4);
+    padding-left: .15rem;
+    position: relative;
+    padding: 0 0 0 1.2rem;
+}
+ol {
+    list-style-type: none;
+    padding-left: 1rem;
+}
+a {
+    font-size: .85rem;
+    display: block;
+    text-decoration: none;
+    padding: 0.25rem .5rem .25rem 0;
+    color: var(--foreground);
+    opacity: 0.75;
+    transition: all .25s linear;
+}
+
+a.active {
+    color: var(--purple-dark);
+    opacity: 1;
+
+    &::before {
+        content: "";
+        width: 2px;
+        height: 35.19px;
+        margin-top: -.25rem;
+        position: absolute;
+        left: -2px;
+        border-left: 2px solid rgba(var(--box-shadow-color));
+    }
+}
+
+@media screen and (max-width: 1250px){
+    .toc-container {
+        display: none;
+    }
+}
+</style>
+
+<script is:inline>
+document.addEventListener("DOMContentLoaded", () => {
+    function addIntersectionObserver() {
+        const observer = new IntersectionObserver((sections) => {
+            sections.forEach((section) => {
+                const heading = section.target.querySelector('h2, h3, h4, h5');
+                if (!heading) return;
+                const id = heading.getAttribute('id');
+
+                // Get the link to this section's heading
+                const link = document.querySelector(`nav.toc li a[href="#${id}"]`);
+                if (!link) return;
+
+                // Add/remove the .active class based on whether the
+                // section is visible
+                const addRemove = section.intersectionRatio > 0 ? 'add' : 'remove';
+                link.classList[addRemove]('active');
+            });
+        });
+
+        // Observe all the sections of the article
+        document.querySelectorAll('article section').forEach((section) => {
+            observer.observe(section);
+        });
+    }
+    addIntersectionObserver();
+});
+</script>

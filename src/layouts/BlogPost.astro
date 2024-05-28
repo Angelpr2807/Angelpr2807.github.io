@@ -1,0 +1,200 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import PageHeaders from '../components/PageHeaders.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const {
+    title,
+    description,
+    pubDate,
+    updatedDate,
+    heroImage,
+} = Astro.props;
+
+
+const posts = await Astro.glob<Frontmatter>(`../content/*/*.md*`);
+const headings = posts.filter(post => post.frontmatter.title === title)
+                    .map(post => post.getHeadings())[0];
+---
+
+<script>
+document.addEventListener("DOMContentLoaded", e => {
+    // validando si se puede acceder a la api de clipboard
+    // borrar el navigator.permisions en caso de manejarlo con el "else"
+    navigator.permissions.query({ name: "clipboard-write" }).then((result) => {
+        if (result.state == "granted" || result.state == "prompt") {
+
+            let copyButtonLabel = "content_copy";
+            let codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+            for (let codeBlock of codeBlocks) {
+                let wrapper = document.createElement("div");
+                wrapper.style.position = "relative";
+
+                let copyButton = document.createElement("button");
+                copyButton.className = "copy-code";
+                copyButton.innerHTML = copyButtonLabel;
+
+                codeBlock.setAttribute("tabindex", "0");
+                codeBlock.appendChild(copyButton);
+                // wrap codebock with relative parent element
+                codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+                wrapper.appendChild(codeBlock);
+
+                copyButton.addEventListener("click", async () => {
+                    await copyCode(codeBlock, copyButton);
+                });
+            }
+
+            async function copyCode(block, button) {
+                let code = block.querySelector("code");
+                let text = code.innerText;
+
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    try {
+                        await navigator.clipboard.writeText(text);
+                        button.classList.add("copied");
+                        button.innerText = "check_circle";
+
+                        setTimeout(() => {
+                            button.innerText = copyButtonLabel;
+                            button.classList.remove("copied");
+                        }, 2000);
+                    } catch (err) {
+                        alert('Failed to copy text: ', err);
+                    }
+                } else {
+                    // en caso no esté habilitada la clipboard
+                    // funcion no terminada
+                    let range = document.createRange();
+                    range.selectNodeContents(code);
+                    let selection = window.getSelection();
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+
+                    button.innerText = "check_circle";
+                    button.classList.add("copied");
+                    setTimeout(() => {
+                        button.innerText = copyButtonLabel;
+                        button.classList.remove("copied");
+                    }, 2000);
+                }
+            }
+        }
+    });
+});
+</script>
+
+<html lang="es">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style>
+			main {
+                max-width: 100%;
+                color: var(--foreground);
+                background-color: var(--background);
+                margin: auto;
+			}
+			.hero-image {
+				width: 100%;
+			}
+
+			.hero-image img {
+				display: block;
+				margin: 0 auto;
+				border-radius: 12px;
+				box-shadow: var(--box-shadow);
+            }
+
+            .img-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 2rem;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+			.prose {
+				max-width: 900px;
+                width: 100%;
+			}
+
+			.title {
+				margin-bottom: 1em;
+				padding: 1em 0;
+				text-align: center;
+				line-height: 1;
+			}
+			.title h1 {
+				margin: 0 0 0.5em 0;
+			}
+			.date {
+				margin-bottom: 0.5em;
+				color: var(--gray);
+                font-family: 'Atkinson', 'monospace';
+			}
+			.last-updated-on {
+				font-style: italic;
+			}
+
+            article {
+                display: flex;
+                justify-content: center;
+                column-gap: 2rem;;
+                padding: 0 1rem;
+
+                p {
+                    margin: 2rem 0;
+                }
+            }  
+
+            @media screen and (min-width: 1200px){
+                article {
+                    padding: .5rem;
+                }
+            }
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main data-pagefind-body>
+			<article>
+				<div class="prose">
+					<div class="title">
+						<div class="date">
+							<FormattedDate date={pubDate} />
+							{
+								updatedDate && (
+									<div class="last-updated-on">
+										Last updated on <FormattedDate date={updatedDate} />
+									</div>
+								)
+							}
+                        </div>
+                        <h1 data-text={title}>{title}</h1>
+						<hr />
+					</div>
+                    { heroImage &&  ( 
+                    <div class="img-container">
+                        <img src={heroImage} alt={title}>
+                    </div> 
+                    )
+                    }
+                   
+                        <slot />
+				</div>
+                {headings.length !== 0 && <PageHeaders pageHeadings={headings} />}
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

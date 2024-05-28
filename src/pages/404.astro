@@ -1,0 +1,75 @@
+---
+import '../styles/glitch-module.css'
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, IMAGES } from '../consts';
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+            <div class="hero-banner">
+                <div class="hero-container">
+                    <div class="environment"></div>
+                    <h1 class="hero glitch layers" data-text="Not Found"><span>404</span></h1>
+                    <h2>Perdido como un vagabundo en una ciudad sin nombre. La página que buscas no se encuentra disponible.</h2>
+                </div> 
+            </div> 
+        </main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+main {
+    width: 100%;
+    max-width: 100vw;
+    padding: 0;
+    color: var(--foreground);
+}
+
+.hero-banner {
+    height: 100vh;
+    background-size: cover;
+    background-image: url('../../public/404.webp');
+    background-repeat: no-repeat;
+    background-position: top center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-attachment: fixed;
+}
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #1D1D1D95;
+}
+
+h1.hero {
+    font-family: 'Hacked', 'monospace';
+    font-size: clamp(3rem, 3rem + 5vw, 6rem);
+    margin: 1rem 0;
+    padding: 0 2rem;
+}
+
+h2 {
+    font-size: var(--font-1);
+    font-family: 'Atkinson', 'monospace';
+    font-weight: normal;
+    padding: 0 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+</style>
+

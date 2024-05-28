@@ -1,0 +1,37 @@
+---
+const { link, text, label, active } = Astro.props;
+---
+
+<a href={link} aria-label={label} class:list={["link-page", { paged: active }]}>
+    {text} 
+</a>
+
+<style>
+.link-page {
+    margin: .7rem;
+    padding: .3rem;
+    font-size: var(--font--1);
+    color: var(--purple-dark);
+    font-weight: bold;
+
+    &:visited {
+        color: var(--purple-dark);
+    }
+}
+.link-page.paged {
+    color: var(--white);
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: 8px;
+        left: 0;
+        width: 100%;
+        height: 10%;
+        box-shadow: rgba(var(--box-shadow-color), 0.4) 0px 5px, rgba(var(--box-shadow-color), 0.3) 0px 10px, rgba(var(--box-shadow-color), 0.2) 0px 15px,
+        rgba(var(--box-shadow-color), 0.1) 0px 20px, rgba(var(--box-shadow-color), 0.05) 0px 25px;
+        filter: blur(1px);
+    }
+}
+</style>

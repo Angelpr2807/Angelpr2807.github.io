@@ -1,0 +1,53 @@
+---
+import MoveButton from './MoveButton.astro';
+const { limit, prev, next, current } = Astro.props;
+
+const firsts = [1, 2, 3];
+const lasts = [limit, limit-1, limit-2];
+
+function pagesToLink() {
+    let i;
+
+    if (firsts.includes(current)) {
+        i = 1 ;
+    } else if (lasts.includes(current)) {
+        i = limit - 4; 
+    } else {
+        i = current - 2;
+    }
+
+    let top = i + 4;
+    
+    let allPages = [];
+
+    for (i; i <= top; i++ ){
+        allPages.push(i);
+        if (i === limit) break;
+    }
+    return allPages;
+}
+
+const totalPages = pagesToLink();
+---
+
+<div class="pager-buttons">
+    { prev && <MoveButton link={prev} text="prev", label="previous page" /> }
+    { totalPages.map((link) => ( <MoveButton link=`/blog/${link}` text={link} label=`Go to page ${link}` active={current === link} /> )) }
+    { next && <MoveButton link={next} text="next", label="next page" /> }
+</div>
+
+<style>
+.pager-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 0 0;
+}
+
+@media screen and (min-width: 720px){
+    .pager-buttons {
+        width: 50%;
+        margin: 3rem auto 0;
+    }
+}
+</style>

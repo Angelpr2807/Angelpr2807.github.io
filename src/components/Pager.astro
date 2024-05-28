@@ -1,0 +1,77 @@
+---
+import BaseHead from './BaseHead.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import PagerButtons from './PagerButtons.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, LIMIT_POSTS } from '../consts';
+import { getCollection } from 'astro:content';
+
+const url = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = url.origin;
+const { prev, next, pages, current } = Astro.props;
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+).reverse().slice(0, LIMIT_POSTS);
+---
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+        { prev && <link rel="prev" href=`${canonicalURL}${prev}` /> }
+        { next && <link rel="next" href=`${canonicalURL}${next}` /> }
+		<style>
+            main {
+                max-width: 900px;
+                width: calc(100% - 3rem);
+                margin: 2rem auto;
+                padding: 0 1.5rem;
+			}
+            h1 {
+                color: var(--foreground);
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+			
+            p {
+                color: var(--foreground);
+                font-size: var(--font-0);
+                text-align: center;
+            }
+
+            #search {
+                width: 50%;
+                margin: 0 auto 3rem;
+            }
+            
+			@media (max-width: 720px) {
+                main {
+                    margin-top: 2rem;
+                }
+                #search {
+                    width: 100%;
+                }
+            }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+            <h1>{Astro.url.pathname === "/blog" ? "Artículos recientes" : `Página ${current}`}</h1>
+            <div id="search"></div>
+			<section>
+                <slot />
+                <PagerButtons limit={pages} prev={prev} next={next} current={current} />
+            </section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<script is:inline>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        if (document.querySelector("#search") !== null) {
+            new PagefindUI({ element: "#search", showSubResults: true });
+        }
+    });
+</script>

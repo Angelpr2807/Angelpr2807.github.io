@@ -1,0 +1,24 @@
+{
+  "name": "angelpr2807-github-io",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev --host",
+    "start": "astro dev",
+    "build": "astro build && pagefind --site dist && cp -r dist/pagefind public",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^3.0.0",
+    "@astrojs/rss": "^4.0.5",
+    "@astrojs/sitemap": "^3.1.4",
+    "astro": "^4.8.2",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0"
+  },
+  "devDependencies": {
+    "@hbsnow/rehype-sectionize": "^1.0.7",
+    "pagefind": "^1.1.0"
+  }
+}

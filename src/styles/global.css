@@ -1,0 +1,285 @@
+:root {
+    /* colors */
+    --background: #0b0b0c;
+	--foreground: #F5F5DC;
+	--foreground-white: #E8E6E3;
+	--gray: #7E7E7E;  
+	--gray-transparent: #f5f5dc33;  
+    --white: #F5F5DC;
+    --purple: #e976a3;
+    --box-shadow-color: 138, 112, 247;
+    --purple-dark: #8A70F7;
+    --red: #ff3c78;
+    --dark-blue: #1d8ba0;
+    --blue: #31a0d1;
+    --green: #8CEE78;
+	/* --box-shadow: 0 2px 6px var(--gray-transparent), 0 8px 24px var(--gray-transparent), */
+		/* 0 16px 32px var(--gray-transparent); */
+    --box-shadow: rgba(var(--box-shadow-color), 0.4) 3px 3px, rgba(var(--box-shadow-color), 0.3) 6px 6px, rgba(var(--box-shadow-color), 0.2) 9px 9px,
+        rgba(var(--box-shadow-color), 0.1) 12px 12px, rgba(var(--box-shadow-color), 0.05) 15px 15px;
+
+    /* Fluid fonts */
+    --font--2: clamp(0.7813rem, 0.7747rem + 0.0326vi, 0.8rem);
+    --font--1: clamp(0.9375rem, 0.9158rem + 0.1087vi, 1rem);
+    --font-0: clamp(1.125rem, 1.0815rem + 0.2174vi, 1.25rem);
+    --font-1: clamp(1.35rem, 1.2761rem + 0.3696vi, 1.5625rem);
+    --font-2: clamp(1.62rem, 1.5041rem + 0.5793vi, 1.9531rem);
+    --font-3: clamp(1.944rem, 1.771rem + 0.8651vi, 2.4414rem);
+    --font-4: clamp(2.3328rem, 2.0827rem + 1.2504vi, 3.0518rem);
+    --font-5: clamp(2.7994rem, 2.4462rem + 1.7658vi, 3.8147rem);
+
+    /* Pagefinder */
+    --pagefind-ui-scale: .75;
+    /* --pagefind-ui-primary: #034ad8; */
+    --pagefind-ui-text: var(--foreground);
+    --pagefind-ui-background: transparent;
+    --pagefind-ui-border: rgb(var(--box-shadow-color), 0.75);
+    --pagefind-ui-tag: #eeeeee;
+    --pagefind-ui-border-width: 2px;
+    --pagefind-ui-border-radius: 1rem;
+    --pagefind-ui-image-border-radius: 8px;
+    --pagefind-ui-image-box-ratio: 3 / 2;
+    --pagefind-ui-font: 'Poppins', 'monospace';
+}
+@font-face {
+	font-family: 'Atkinson';
+	src: url('/fonts/atkinson-regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+    font-family: 'Atkinson';
+    src: url('/fonts/atkinson-bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-Light.ttf');
+    font-display: swap;
+
+}
+@font-face {
+    font-family: 'VictorMono';
+    src: url('/fonts/VictorMono-Regular.ttf');
+    font-display: swap;
+
+}
+@font-face {
+    font-family: 'Hacked';
+    src: url('/fonts/HACKED.ttf');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Material';
+    font-style: normal;
+    src: url("/fonts/MaterialSymbolsOutlined.ttf");
+	font-display: swap;
+}
+html {
+    scroll-behavior: smooth;
+    scroll-margin-top: 70px;
+}
+body {
+	font-family: 'Poppins', sans-serif;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	background: var(--background);
+	background-size: 100% 600px;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	color: var(--gray-dark);
+	font-size: var(--font--1);
+	line-height: 1.7; 
+}
+main {
+	max-width: 1200px;
+	width: calc(100vw - 2em);
+	margin: 0 auto;
+	padding: 3rem 0rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0 0 0.5rem 0;
+	color: rgb(var(--black));
+	line-height: 1.2;
+    scroll-margin-top: 100px;
+}
+h1 {
+	font-size: var(--font-5);
+}
+h2 {
+	font-size: var(--font-3);
+}
+h3 {
+	font-size: 1.953em;
+}
+h4 {
+	font-size: 1.563em;
+}
+h5 {
+	font-size: 1.25em;
+}
+strong,
+b {
+	font-weight: 700;
+}
+a {
+    text-decoration: none;
+    color: var(--blue);
+
+    &:visited {
+        color: var(--purple);
+    }
+}
+a:hover {
+    text-decoration: underline;
+}
+.anchor {
+    color: var(--foreground);  
+    display: flex;
+    align-items: center;
+    margin: 3rem 0;
+
+    &::after {
+        content: 'link';
+        font-family: "Material";
+        text-align: center;
+        margin-left: 1rem;
+        width: 50px;
+        text-align: left;
+        outline: 0;
+        color: var(--gray);
+        font-size: 2rem;
+        font-weight: 500;
+        opacity: 0;
+        transition: opacity .2s; 
+    }
+    &:hover {
+        opacity: 0.75;
+
+        &::after {
+        opacity: 1;
+        }
+    }
+}
+a.anchor-link {
+    color: var(--foreground);  
+
+    &::visited {
+        color: var(--foreground);  
+    }
+}
+p {
+	margin-bottom: 1em;
+    font-size: var(--font--1);
+}
+.prose p {
+	margin-bottom: 2em;
+}
+textarea {
+	width: 100%;
+	font-size: 16px;
+}
+input {
+	font-size: 16px;
+}
+table {
+	width: 100%;
+}
+img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 8px;
+}
+code {
+    margin: 0;
+	background-color: var(--gray-transparent);
+    color: #fff;
+	border-radius: 0.3rem;
+    padding: 4px 5px 5px;
+    white-space: nowrap;
+}
+pre {
+	padding: 1.5em;
+	border-radius: 8px;
+    font-family: 'VictorMono', 'monospace';
+}
+pre > code {
+	all: unset;
+}
+/* code block */
+.copy-code {
+    font-family: 'Material';
+    font-weight: 400;
+    position: absolute;
+    top: .75rem;
+    right: .75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #99999950;
+    color: var(--white);
+    font-size: 1.25rem; 
+}
+.copy-code:hover {
+    opacity: 0.75;
+}
+.copied {
+    color: var(--green);
+
+    &::after {
+        font-family: "Atkinson";
+        font-size: 1rem;
+        content: "Copied!";
+        position: absolute;
+        right: calc(100% + .5rem);
+        padding: 0.5rem 0rem;
+        top: .15rem;
+        width: fit-content;
+        height: 1rem;
+        color: var(--foreground);
+    }
+}
+blockquote {
+	border-left: 4px solid var(--purple-dark);
+	padding: 0 0 0 20px;
+	margin: 0px;
+	font-size: var(--font--1);
+}
+hr {
+	border: none;
+	border-top: 2px solid var(--gray);
+}
+#search {
+    margin-bottom: 2rem;
+}
+button {
+    cursor: pointer;
+}
+.sr-only {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+	clip: rect(1px 1px 1px 1px);
+	/* maybe deprecated but we need to support legacy browsers */
+	clip: rect(1px, 1px, 1px, 1px);
+	/* modern browsers, clip-path works inwards from each corner */
+	clip-path: inset(50%);
+	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
+	white-space: nowrap;
+}
