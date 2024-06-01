@@ -2,6 +2,7 @@
 title: 'Google Dorking'
 description: 'Busquedas avanzadas en google para encontrar fugas de información o contenido oculto.'
 pubDate: 'May 27 2024'
+heroImage: '/images/hacking/google-dorking.png'
 ---
 
 ## Google dorking cheatsheet

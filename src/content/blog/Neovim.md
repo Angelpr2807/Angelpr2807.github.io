@@ -2,20 +2,21 @@
 title: 'Neovim'
 description: 'Aprendiendo a usar el editor de texto basado en terminal llamado "neovim".'
 pubDate: 'May 28 2024'
+heroImage: "/images/linux/neovim.png"
 ---
 
 ## Neovim
 
 Notas sobre neovim, instalación, uso, cheatsheet, plugins, etc.
 
-> <span style="display: flex; align-items: center;color: var(--red); margin-bottom: .75rem;"><span style="font-family: 'Material'; font-size: 1.25rem; margin-right: .5rem">priority_high</span> **Importante** </span>
+> <span style="display: flex; align-items: center;color: var(--red); margin-bottom: .75rem;"><span style="font-family: 'Material'; font-size: 1.25rem;">priority_high</span>**Importante** </span>
 > Toda la información es extraida de [Learn vim](https://github.com/iggredible/Learn-Vim) y modificada ligeramente a mis necesidades, por favor, apoyen al material original y mandenle un saludo de mi parte :).
 
 ## Conceptos básicos
 
 Comandos básicos, modos, etc.
 
-**Abrir neovim:**
+**Abrir neovim**
 
 ```bash
 nvim                    # Forma normal.
@@ -63,7 +64,7 @@ Al presionar `Tab` se abrirá una ventana emergente que mostrará todas las suge
 :edit text1.txt
 ```
 
-**Comodines:**
+**Comodines**
 
 Como en bash, puedes poner comodines para que te muestre todas las coincidencias que buscas.
 
@@ -73,9 +74,9 @@ Como en bash, puedes poner comodines para que te muestre todas las coincidencias
 
 En este caso nos mostrará todos los archivos con extensión ".txt" que existan en nuestro directorio para poder seleccionarlos.
 
-**Modos:**
+**Modos**
 
-Aquí está el corazón de vim/neovim.
+Aquí está el corazón de vim/neovim, los modos son distintas formas en la que el editor entenderá tus acciones de una manera u otra, dependiendo del modo en el que estés y la acción que quieras realizar.
 
 - **Normal:** Puedes ejecutar combinaciones de teclas, moverte y ejecutar comandos.
 - **Inserción:** Editar el texto.
@@ -83,7 +84,9 @@ Aquí está el corazón de vim/neovim.
 - **Select:** Similar al modo visual.
 - **Replace:** Reemplazar caracteres.
 
-**Salir de vim:**
+**Salir de vim**
+
+Para salir de vim en el modo normal, primero asegurate que estás en este modo presionando la tecla `Esc` una o dos veces y ejecuta cualquiera de los siguientes comandos.
 
 ```bash
 :q       # Salir de manera normal (abreviado).
@@ -91,7 +94,9 @@ Aquí está el corazón de vim/neovim.
 :q!      # Salir sin guardar cambios (forzado).
 ```
 
-**Guardar:**
+**Guardar**
+
+Ahora que ya trabajamos en nuestros archivos, lo que queremos hacer es guardarlos, esto tambien se hace desde el modo normal al ejecutar estos comandos.
 
 ```bash
 :w             # Guardado normal.
@@ -100,7 +105,8 @@ Aquí está el corazón de vim/neovim.
 :x             # Lo mismo que ":wq".
 ```
 
-**Ayuda:**
+**Ayuda**
+Obtener asistencia en vim es simple, la página de ayuda es muy completa y puedes buscar codo lo que necesites en el, o si quieres, puedes revisar la [documentación oficial de neovim](https://neovim.io/doc/).
 
 ```bash
 :help                 # Ayuda (extendido).
@@ -110,9 +116,9 @@ Aquí está el corazón de vim/neovim.
 :h <mode>_<command>   # Paginas de comando en modo especifico.
 ```
 
-**Suspender neovim:**
+**Suspender neovim**
 
-Suspender neovim es ponerlo en segundo plano para volver a editarlo despues (mientras la terminal siga abierta, caso contrario, todos los procesos de fondo se eliminarán).
+Suspender neovim es ponerlo en segundo plano para volver a editar en él despues (mientras la terminal siga abierta, caso contrario, todos los procesos de fondo se eliminarán). Los tres comandos hacen lo mismo
 
 ```bash
 :stop
@@ -123,7 +129,7 @@ Ctrl + z
 Devolverlo a primer plano:
 
 ```bash
-fg [idJob]       # El id puede no ser necesario (No estoy seguro).
+fg [%id]       # El id puede no ser necesario (en caso quieras abrir el último archivo en segundo plano).
 ```
 
 
@@ -131,7 +137,7 @@ fg [idJob]       # El id puede no ser necesario (No estoy seguro).
 
 Las ventanas o pestañas de vim/neovim trabajan con tres abstracciones de visualización: 
 
-- **Buffers:** Un "buffer" es un área de almacenamiento en la memoria donde se guarda el contenido de un archivo que estás editando (solo el contenido, no tiene nada que ver con la ventana ni la pestaña). Cuando abres un archivo en Vim, su contenido se carga en un buffer para que puedas ver y editar el texto.
+- **Buffers:** Un "buffer" es un área de almacenamiento en la memoria donde se guarda el contenido de un archivo que estás editando (**solo el contenido**, no tiene nada que ver con la ventana ni la pestaña). Cuando abres un archivo en Vim, su contenido se carga en un buffer para que puedas ver y editar el texto.
 
 - **Ventanas:**  Una "ventana" se refiere a una región en la pantalla donde se muestra el contenido de un buffer. Puedes tener múltiples ventanas abiertas en Vim, cada una mostrando diferentes partes del mismo archivo o mostrando contenido de distintos buffers.
 
@@ -292,7 +298,9 @@ D    Delete a file or directory
 
 ## Movimiento
 
-**Movimiento básico:**
+**Movimiento básico**
+
+Para movernos en neovim (en el modo normal) tenemos las siguientes teclas con sus respectivas posiciones a las cuales se desplazarán.
 
 | Tecla | Posición              | Tecla | Posición             | Tecla    | Posición                |
 | ----- | --------------------- | ----- | -------------------- | -------- | ----------------------- |
@@ -308,12 +316,14 @@ D    Delete a file or directory
 
 ## Modificación
 
+Estamos trabajando en un editor de texto, con lo cual queremos modificar el contenido, pero en el modo normal es un poco extraño si es tu primera vez en este editor.
+
 ```bash
-d + [[i|a] dpshjklwtbe...]      # eliminar
+d + [[i|a] dpshjklwtbe...]      # eliminar (i dentro, a con el contenedor)
 d + i <caracter>                # eliminar el contenido dentro de ...
 d + a <caracter>                # eliminar el contenido mas el caracter ...
 
-# caracteres
+# caracteres (d + <tecla>)
 w                               # Una palabra
 p                               # Un párrafo
 s                               # Una sentencia
@@ -349,6 +359,8 @@ const hello = function() {
 
 ## Busqueda
 
+Para buscar palabras, párrafos enteros o lo que desees puedes hacerlo desde el modo normal con `/` o `?` y tu término a buscar, por ejemplo si quieres la palabra "variable" ejecutarias el comando `/variale` o `?variable`. los siguientes operadores en la tabla parten de encontrar coincidencias con las busquedas anteriores.
+
 | Tecla | Posición             | Tecla        | Posición                     | Tecla    | Posición                     |
 | ----- | -------------------- | ------------ | ---------------------------- | -------- | ---------------------------- |
 | /     | Buscar desp. cursor  | ?            | buscar ant. cursor           | n        | sig. coincidencia            |
@@ -371,7 +383,9 @@ const hello = function() {
 
 ## Sustitución
 
-Para sustitución básica (en la linea del cursor) puedes ejecutar:
+Para reemplazar una palabra o tantas coincidencias querramos, podemos hacer esto desde el modo normal con las siguientes instrucciones.
+
+Para sustitución básica (desde la linea del cursor en adelante) puedes ejecutar:
 
 ```bash
 :s/pattern/replace/[flag]
@@ -402,7 +416,7 @@ En el tópico de [Busqueda](#Busqueda) vemos la combinación de teclas `//` que 
 
 y el comando `:s` o la tecla `&` son un shortcut para nuestro último reemplazo, por ejemplo:
 
-```bash
+```vim
 :s/hola/mundo   # Sustitución básica
 :s              # --> ejecuta :s/hola/mundo
 &               # --> lo mismo que :s
@@ -413,7 +427,7 @@ y el comando `:s` o la tecla `&` son un shortcut para nuestro último reemplazo,
 Podemos sustituir en lineas especificas o entre lineas especificas, del siguiente modo
 
 ```bash
-"El formato [some] es de un parámetro opcional y el formato <some> es de un parámetro requerido"
+"El formato [algo] es de un parámetro opcional y el formato <algo> es de un parámetro requerido"
 
 # Formato
 :[[inicio],[fin]]s/pattern/replace/[flag]  # formato general.
@@ -474,9 +488,9 @@ A veces tendremos la necesidad de cambiar el delimitador ya que es complejo verl
 
 Esto mejora la legibilidad.
 
-
-
 ## Deshacer
+
+Para deshacer o rehacer tus cambios (en el modo normal) tienes un gran abanico de opciones y comandos a probar, no entiendo muy bien las opciones de la segunda columna porque nos las uso núnca y no les encuentro utilidad en mi flujo de trabajo, así que si quieres apender más sobre esto te invito a leer la documentación oficial.
 
 | Tecla      | Posición                 | Tecla    | Posición               | Tecla    | Posición                      |
 | ---------- | ------------------------ | -------- | ---------------------- | -------- | ----------------------------- |
@@ -494,13 +508,13 @@ El modo de insersión de texto permite la edición de texto, pero comúnmente va
 | s        | Del. char & insertar     | S        | Borra linea & insert   | b        | inicio ant. palabra    |
 | Ctrl + h | Borrar anterior caracter | Ctrl + w |Borrar palabra anterior | Ctrl + u |Borrar linea            |
 
-Para ejecutar comandos ejecuta (en el modo inserción):
+Para ejecutar comandos en este modo puedes ejecutar:
 
 ```bash
-Ctrl + o !! <comando>
+!!<comando>
 ```
 
-Cuando se procesa y termina la ejecución del comando.
+Cuando se procesa y termina la ejecución del comando, el resultado de este se plasmará en el bloque que seleccionaste en este modo.
 
 ## Comando punto
 

@@ -2,11 +2,12 @@
 title: 'Path traversal'
 description: 'Vulnerabilidad de salto de directorios para recorrer entre rutas y listar contenido.'
 pubDate: 'May 27 2024'
+heroImage: '/images/hacking/path-traversal.png'
 ---
 
 ## Path Traversal
 
-_Path traversal_ (salto de directorios) o _Directory Traversal_ es una vulnerabilidad en la cual podermos recorrer directiorios del sistema para visualizar u obtener archivos de nuestro interés.
+**_Path traversal_**  o **_Directory Traversal_** (salto de directorios) es una vulnerabilidad en la cual podermos recorrer directiorios del sistema para visualizar u obtener archivos a los cuales no "deberíamos" poder acceder.
 
 Las oportunidades que tenemos para explotar esta vulnerabilidad es cuando un parámetro tiene el valor de un archivo, en este caso sería un HPP (Http Parameter Polution), y así poder enumerar los archivos existentes en el servidor.
 

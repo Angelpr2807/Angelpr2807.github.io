@@ -2,13 +2,14 @@
 title: 'Aprendiendo SSH'
 description: 'Aprendiendo sobre el protocolo SSH para la comunicación remota con otros equipos.'
 pubDate: 'May 27 2024'
+heroImage: '/images/linux/ssh.png'
 ---
 
 ## SSH
 
-SSH (Secure Shell) es una versión cifrada de la tecnología llamada **Telnet**, este protocolo permite la comunicación de dos computadoras mediante red y la comunicación sea segura.
+[SSH](https://es.wikipedia.org/wiki/Secure_Shell) o _Secure Shell_ es una versión cifrada de la tecnología llamada [**Telnet**](https://es.wikipedia.org/wiki/Telnet), este protocolo permite la comunicación entre dispositivos mediante conexiones de red y hace que la municación sea segura.
 
-El comando `ssh` nos permite establecer comunicación con otro host, pero necesitamos hacer dos cosas antes (solo si no tienes el demonio habilitado).
+El comando `ssh` nos permite establecer comunicación con otro host que es suficiente si somos clientes, pero si adoptamos el rol de servidor necesitamos hacer dos cosas antes (solo si no tienes el demonio ssh habilitado). Si solo quieres conectarte con un servidor ve al apartado de [comunicación](#Comunicación). 
 
 1. Instalar el paquete de ssh: Para tu distro de linux o windows puede variar el método de instalación de ssh, para arch linux puedes ejecutar el comando:
 
@@ -53,11 +54,11 @@ ssh user@<ip|domain>
 por ejemplo se vería así:
 
 ```bash
-ssh wiener@192.168.1.30
-ssh wiener@my-server.net
+ssh wiener@192.168.1.30         # ip
+ssh wiener@my-server.net        # domain
 ```
 
-Posteriormente, te preguntará si quieres conectarte al host y te mostrará un [hash SHA256](https://www.techopedia.com/es/definicion/sha-256), si pones `yes` tendrás que proporcionar la contraseña de tu usuario y te conectara automaticamente y si pones `no` cancelarás la conexión. ¿Por qué te menciono lo del hash?, bueno, por ejemplo imagina que el host (servidor) cambió, pero le asignaron la misma IP, entonces `ssh` te alertará de esto y cancelará la conexión, mostrandote algo así para que te mantengas seguro:
+Posteriormente, te preguntará si quieres conectarte al host y te mostrará un [hash SHA256](https://www.techopedia.com/es/definicion/sha-256), si pones `yes` tendrás que proporcionar la contraseña de tu usuario y te conectara automaticamente y si pones `no` cancelarás la conexión. ¿Por qué te menciono lo del hash?, bueno, por ejemplo imagina que el host (servidor) cambió, pero le asignaron la misma IP o dominio, entonces `ssh` te alertará de esto y cancelará la conexión, mostrandote algo así para que te mantengas seguro:
 
 **En caso no te salga esto prosigue a la siguiente sección**
 

@@ -136,6 +136,7 @@ b {
 a {
     text-decoration: none;
     color: var(--blue);
+    cursor: pointer;
 
     &:visited {
         color: var(--purple);
@@ -194,7 +195,19 @@ input {
 	font-size: 16px;
 }
 table {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
 	width: 100%;
+    margin-bottom: 1.6rem;
+
+    th, td {
+        padding: 1rem;
+        border: .1rem solid var(--gray);
+    }
+    th {
+        background-color: var(--gray-transparent);
+    }
 }
 img {
 	max-width: 100%;
@@ -203,10 +216,10 @@ img {
 }
 code {
     margin: 0;
-	background-color: var(--gray-transparent);
-    color: #fff;
+	background-color: #585858;
+    color: var(--foreground);
 	border-radius: 0.3rem;
-    padding: 4px 5px 5px;
+    padding: 2px 5px 2px;
     white-space: nowrap;
 }
 pre {
@@ -282,4 +295,49 @@ button {
 	clip-path: inset(50%);
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
+}
+
+a.to-pages {
+    display: block;
+    width: fit-content;
+    background-color: var(--background);
+    border: none;
+    padding: 1rem 2rem;
+    margin: 5rem auto 0rem;
+    color: var(--white);
+    font-size: var(--font-0);
+    font-weight: bold;
+    position: relative;
+    border-radius: 10px;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background-image: linear-gradient(45deg, red, blue, deeppink, blue, red, blue, deeppink, blue);
+        background-size: 800%;
+        border-radius: 10px;
+        filter: blur(8px);
+        animation: glowing 40s linear infinite;
+    }
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
 }

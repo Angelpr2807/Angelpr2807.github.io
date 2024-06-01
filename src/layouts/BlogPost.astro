@@ -23,70 +23,72 @@ const headings = posts.filter(post => post.frontmatter.title === title)
 ---
 
 <script>
+document.addEventListener("click", e => {
+    if (!e.target.matches("a.back")){
+        return;
+    }
+    history.back();
+})
+
 document.addEventListener("DOMContentLoaded", e => {
     // validando si se puede acceder a la api de clipboard
     // borrar el navigator.permisions en caso de manejarlo con el "else"
-    navigator.permissions.query({ name: "clipboard-write" }).then((result) => {
-        if (result.state == "granted" || result.state == "prompt") {
+    let copyButtonLabel = "content_copy";
+    let codeBlocks = Array.from(document.querySelectorAll("pre"));
 
-            let copyButtonLabel = "content_copy";
-            let codeBlocks = Array.from(document.querySelectorAll("pre"));
+    for (let codeBlock of codeBlocks) {
+        let wrapper = document.createElement("div");
+        wrapper.style.position = "relative";
 
-            for (let codeBlock of codeBlocks) {
-                let wrapper = document.createElement("div");
-                wrapper.style.position = "relative";
+        let copyButton = document.createElement("button");
+        copyButton.className = "copy-code";
+        copyButton.innerHTML = copyButtonLabel;
 
-                let copyButton = document.createElement("button");
-                copyButton.className = "copy-code";
-                copyButton.innerHTML = copyButtonLabel;
+        codeBlock.setAttribute("tabindex", "0");
+        codeBlock.appendChild(copyButton);
+        // wrap codebock with relative parent element
+        codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+        wrapper.appendChild(codeBlock);
 
-                codeBlock.setAttribute("tabindex", "0");
-                codeBlock.appendChild(copyButton);
-                // wrap codebock with relative parent element
-                codeBlock.parentNode.insertBefore(wrapper, codeBlock);
-                wrapper.appendChild(codeBlock);
+        copyButton.addEventListener("click", async () => {
+            await copyCode(codeBlock, copyButton);
+        });
+    }
 
-                copyButton.addEventListener("click", async () => {
-                    await copyCode(codeBlock, copyButton);
-                });
+    async function copyCode(block, button) {
+        let code = block.querySelector("code");
+        let text = code.innerText;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            try {
+                await navigator.clipboard.writeText(text);
+                button.classList.add("copied");
+                button.innerText = "check_circle";
+
+                setTimeout(() => {
+                    button.innerText = copyButtonLabel;
+                    button.classList.remove("copied");
+                }, 2000);
+            } catch (err) {
+                alert('Failed to copy text: ', err);
             }
+        } else {
+            // en caso no esté habilitada la clipboard
+            // funcion no terminada
+            let range = document.createRange();
+            range.selectNodeContents(code);
+            let selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
 
-            async function copyCode(block, button) {
-                let code = block.querySelector("code");
-                let text = code.innerText;
-
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    try {
-                        await navigator.clipboard.writeText(text);
-                        button.classList.add("copied");
-                        button.innerText = "check_circle";
-
-                        setTimeout(() => {
-                            button.innerText = copyButtonLabel;
-                            button.classList.remove("copied");
-                        }, 2000);
-                    } catch (err) {
-                        alert('Failed to copy text: ', err);
-                    }
-                } else {
-                    // en caso no esté habilitada la clipboard
-                    // funcion no terminada
-                    let range = document.createRange();
-                    range.selectNodeContents(code);
-                    let selection = window.getSelection();
-                    selection.removeAllRanges();
-                    selection.addRange(range);
-
-                    button.innerText = "check_circle";
-                    button.classList.add("copied");
-                    setTimeout(() => {
-                        button.innerText = copyButtonLabel;
-                        button.classList.remove("copied");
-                    }, 2000);
-                }
-            }
+            button.innerText = "check_circle";
+            button.classList.add("copied");
+            setTimeout(() => {
+                button.innerText = copyButtonLabel;
+                button.classList.remove("copied");
+            }, 2000);
         }
-    });
+    } 
 });
 </script>
 
@@ -143,6 +145,7 @@ document.addEventListener("DOMContentLoaded", e => {
 			}
 			.last-updated-on {
 				font-style: italic;
+                margin-top: 1rem;
 			}
 
             article {
@@ -155,6 +158,31 @@ document.addEventListener("DOMContentLoaded", e => {
                     margin: 2rem 0;
                 }
             }  
+
+            .back {
+                display: block;
+                width: fit-content;
+                background-color: var(--background);
+                text-decoration: none;
+                padding: .5rem 1rem;
+                margin: 5rem auto 0rem;
+                color: var(--foreground);
+                font-size: var(--font-0);
+                font-weight: bold;
+                border-radius: 10px;
+                border: 2px solid var(--purple-dark);
+                transition: all .25s ease-out;
+
+                &:hover {
+                    color: var(--background);
+                    background-color: var(--purple-dark);
+                }
+            }
+
+            .icon {
+                font-family: 'Material'; 
+                vertical-align: middle;
+            }
 
             @media screen and (min-width: 1200px){
                 article {
@@ -175,7 +203,7 @@ document.addEventListener("DOMContentLoaded", e => {
 							{
 								updatedDate && (
 									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
+										Última actualización: <FormattedDate date={updatedDate} />
 									</div>
 								)
 							}
@@ -188,9 +216,9 @@ document.addEventListener("DOMContentLoaded", e => {
                         <img src={heroImage} alt={title}>
                     </div> 
                     )
-                    }
-                   
-                        <slot />
+                    }  
+                    <slot />
+                    <a class="back" aria-label="Página anterior"><span class="icon">keyboard_return</span> Volver</a>
 				</div>
                 {headings.length !== 0 && <PageHeaders pageHeadings={headings} />}
 			</article>
