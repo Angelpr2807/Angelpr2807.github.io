@@ -42,6 +42,7 @@ const posts = (await getCollection('blog')).sort(
 			}
 			ul li {
 				width: 100%;
+                height: 100%;
 			}
 			ul li * {
 				text-decoration: none;
@@ -77,10 +78,16 @@ const posts = (await getCollection('blog')).sort(
 				box-shadow: var(--box-shadow);
 			}  
 
+            li:hover h3 {
+                border-left: 3px solid var(--red);
+                padding-left: 1rem;
+            }
+
             @media screen and (min-width: 720px) {
                 ul {
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
+                    align-items: center;
                 }
             }
 </style>

@@ -42,56 +42,62 @@ const toc = pageHeadings.reduce((array, heading) => {
 </div>
 
 <style>
-nav.toc {
-    display: block;
-    position: sticky;
-    top: 7rem;
-    padding-left: 1rem;
+    nav.toc {
+        display: block;
+        position: sticky;
+        top: 7rem;
+        padding-left: 1rem;
+        max-height: 77.5vh;
+        overflow-y: auto;
 
-    h2 {
-        font-size: 1rem;
+        &::-webkit-scrollbar-thumb {
+            display:none;
+        }
+
+        h2 {
+            font-size: 1rem;
+        }
     }
-}
-nav.toc > ol {
-    border-left: 2px solid rgba(var(--box-shadow-color), 0.4);
-    padding-left: .15rem;
-    position: relative;
-    padding: 0 0 0 1.2rem;
-}
-ol {
-    list-style-type: none;
-    padding-left: 1rem;
-}
-a {
-    font-size: .85rem;
-    display: block;
-    text-decoration: none;
-    padding: 0.25rem .5rem .25rem 0;
-    color: var(--foreground);
-    opacity: 0.75;
-    transition: all .25s linear;
-}
-
-a.active {
-    color: var(--purple-dark);
-    opacity: 1;
-
-    &::before {
-        content: "";
-        width: 2px;
-        height: 35.19px;
-        margin-top: -.25rem;
-        position: absolute;
-        left: -2px;
-        border-left: 2px solid rgba(var(--box-shadow-color));
+    nav.toc > ol {
+        border-left: 2px solid rgba(var(--box-shadow-color), 0.4);
+        padding-left: .15rem;
+        position: relative;
+        padding: 0 0 0 1.2rem;
     }
-}
-
-@media screen and (max-width: 1250px){
-    .toc-container {
-        display: none;
+    ol {
+        list-style-type: none;
+        padding-left: 1rem;
     }
-}
+    a {
+        font-size: .85rem;
+        display: block;
+        text-decoration: none;
+        padding: 0.25rem .5rem .25rem 0;
+        color: var(--foreground);
+        opacity: 0.8;
+        transition: all .25s linear;
+    }
+
+    a.active {
+        color: var(--purple-dark);
+        opacity: 1;
+
+        &::before {
+            content: "";
+            width: 2px;
+            height: 35.19px;
+            margin-top: -.25rem;
+            position: absolute;
+            left: -2px;
+            border-left: 2px solid rgba(var(--box-shadow-color));
+        }
+    }
+
+    @media screen and (max-width: 1250px){
+        .toc-container {
+            display: none;
+        }
+    }
 </style>
 
 <script is:inline>

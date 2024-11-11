@@ -30,7 +30,7 @@ document.addEventListener("click", e => {
     history.back();
 })
 
-document.addEventListener("DOMContentLoaded", e => {
+document.addEventListener("DOMContentLoaded", () => {
     // validando si se puede acceder a la api de clipboard
     // borrar el navigator.permisions en caso de manejarlo con el "else"
     let copyButtonLabel = "content_copy";
@@ -70,23 +70,8 @@ document.addEventListener("DOMContentLoaded", e => {
                     button.classList.remove("copied");
                 }, 2000);
             } catch (err) {
-                alert('Failed to copy text: ', err);
+                alert(`Failed to copy text: , ${err}`);
             }
-        } else {
-            // en caso no esté habilitada la clipboard
-            // funcion no terminada
-            let range = document.createRange();
-            range.selectNodeContents(code);
-            let selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-
-            button.innerText = "check_circle";
-            button.classList.add("copied");
-            setTimeout(() => {
-                button.innerText = copyButtonLabel;
-                button.classList.remove("copied");
-            }, 2000);
         }
     } 
 });
@@ -167,7 +152,7 @@ document.addEventListener("DOMContentLoaded", e => {
                 padding: .5rem 1rem;
                 margin: 5rem auto 0rem;
                 color: var(--foreground);
-                font-size: var(--font-0);
+                font-size: var(--font--1);
                 font-weight: bold;
                 border-radius: 10px;
                 border: 2px solid var(--purple-dark);
