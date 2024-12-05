@@ -18,8 +18,6 @@ const updatedDate=null;
             width: calc(100% - 2em);
             max-width: 100%;
             margin: 0 auto;
-            color: var(--foreground);
-            background-color: var(--background);
         }
         .hero-image {
             width: 100%;
@@ -54,10 +52,40 @@ const updatedDate=null;
         .last-updated-on {
             font-style: italic;
         }
+        
+        img {
+        border-radius: 50%;
+        width: 180px;
+            aspect-ratio: 1 / 1;
+        }
+
+        .avatar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+
+            img {
+                object-position: center -1rem;
+                object-fit: cover;
+            }
+        }
+
+        h2 {
+            margin-top: 4rem;
+        }
+
+        .tab {
+            text-indent: 1.5rem;
+            margin-top: 3rem;
+
+            ul {
+                list-style: inside;
+            }
+        }
         </style>
     </head>
 
-    <body>
+    <body>    
         <Header />
         <main>
             <article>
@@ -67,7 +95,7 @@ const updatedDate=null;
                             <FormattedDate date={pubDate} />
                             {
                             updatedDate && (
-                                    <div class="last-updated-on">
+                            <div class="last-updated-on">
                                 Last updated on <FormattedDate date={updatedDate} />
                             </div>
                             )
@@ -83,10 +111,10 @@ const updatedDate=null;
                         Hola, soy Angel Perez Ravelo (AKA <b>{AKA}</b>). Soy un estudiante de ingeniería en sistemas e informática y actualmente me especializo en el área de <b>hacking ético</b> y la <b>ciberseguridad ofensiva</b>. Empecé en el área de la tecnología con el desarrollo de aplicaciones web, pero ahondando cada vez más en otras áreas, encontré el de la ciberseguridad y actualmente me especializo en ese área.
                     </p>
                     <p>
-                        Tengo un <a href="/blog/" target="_blank">blog</a> en el que escribo artículos sobre herramientas de hacking, tips <i>tech</i>, linux, ciberseguridad, programación, entre otros. Los artículos en ciertos casos muy técnicos por la naturaleza de algúnos temas, pero trato hacerlos lo más accesibles de entender. Si están interesados en colaborar con este proyecto estaría encantado de recibir su apoyo y trabajar con ustedes, en el apartado de <a href="/contact" target="_blank">contácto</a> puedes encontrár varios métodos para comunicarte conmigo.
+                        Tengo un <a href="/blog/" target="_blank">blog</a> en el que escribo artículos sobre herramientas de hacking, tips <i>tech</i>, linux, ciberseguridad, programación, entre otros. Los artículos son en ciertos casos muy técnicos por la naturaleza de algunos temas, pero trato de hacerlos lo más accesibles de entender. Si están interesados en colaborar con este proyecto estaría encantado de recibir su apoyo y trabajar con ustedes, en el apartado de <a href="/contact" target="_blank">contacto</a> puedes encontrar varios métodos para comunicarte conmigo.
                     </p>
                     <p>
-                        Mi objetivo con el blog es mostrar cómo es realmente el área de la seguridad informática y en estos artículos trato de simplificar conceptos para que sea agradable de leer y que el contenido se entienda con facilidad, pero no por ello se descuida el contenido ni mucho menos. También deseo crear una comunidad en la que todos podemos colaborar, compartir conocimiento, ideas, experiencias, etc.
+                        Mi objetivo con el blog es mostrar cómo es realmente el área de la seguridad informática y en estos artículos trato de simplificar conceptos para que sea agradable de leer y que el contenido se entienda con facilidad, pero no por ello se descuida el contenido ni mucho menos. También deseo crear una comunidad en la que todos podamos colaborar, compartir conocimiento, ideas, experiencias, etc.
                     </p>
                     <h2>Educación</h2>
                     <ol>
@@ -121,39 +149,8 @@ const updatedDate=null;
                     <p>Muchas gracias por llegar hasta aquí. 😄</p>
                 </div>
             </article>
+
         </main>
         <Footer />
     </body>
 </html>
-
-<style>
-img {
-    border-radius: 50%;
-    width: 180px;
-    aspect-ratio: 1 / 1;
-}
-
-.avatar {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3rem;
-
-    img {
-        object-position: center -1rem;
-        object-fit: cover;
-    }
-}
-
-h2 {
-    margin-top: 4rem;
-}
-
-.tab {
-    text-indent: 1.5rem;
-    margin-top: 3rem;
-
-    ul {
-        list-style: inside;
-    }
-}
-</style>

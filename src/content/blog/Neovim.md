@@ -2,14 +2,14 @@
 title: 'Neovim'
 description: 'Aprendiendo a usar el editor de texto basado en terminal llamado "neovim".'
 pubDate: 'May 28 2024'
-heroImage: "/images/linux/neovim.png"
+heroImage: "/images/linux/neovim.webp"
 ---
 
 ## Neovim
 
 Notas sobre neovim, instalación, uso, cheatsheet, plugins, etc.
 
-> <span style="display: flex; align-items: center;color: var(--red); margin-bottom: .75rem;"><span style="font-family: 'Material'; font-size: 1.25rem;">priority_high</span>**Importante** </span>
+> [!Important]
 > Toda la información es extraida de [Learn vim](https://github.com/iggredible/Learn-Vim) y modificada ligeramente a mis necesidades, por favor, apoyen al material original y mandenle un saludo de mi parte :).
 
 ## Conceptos básicos
@@ -21,17 +21,17 @@ Comandos básicos, modos, etc.
 ```bash
 nvim                    # Forma normal.
 nvim <file>             # Abrir archivo especifico.
-nvim <file1 file2 ...>  # Abrir multiples archivos (en buffers separados).
+nvim <file1 file2 ...>  # Abrir múltiples archivos (en buffers separados).
 ```
 
-Multiplexores: Abrir multiples ventanas de neovim en una sola terminal.
+Multiplexores: Abrir múltiples ventanas de neovim en una sola terminal.
 
 ```bash
 nvim -o[num]       # Abre num ventanas de forma horizontal.
 nvim -O[num]       # Abre num ventanas de forma vertical.
 # No se pueden combinar estos parámetros.
 
-nvim -o[num] <file1 file2 ...fileN> # Abrirá num ventanas y en las N primeras pondrá los archivos del uno al N. 
+nvim -o[num] <file1 file2 ...fileN> # Abrirá “num” ventanas y en las N primeras pondrá los archivos del uno al N. 
 ```
 
 Argumentos: 
@@ -44,7 +44,7 @@ nvim [options] -t tag
 nvim [options] -q [errorfile]
 ```
 
-Los argumentos (no sé si todos) se pueden pasar como comandos y no solo en la terminal. Hablando de los comandos, no es necesario escribir los comandos en su totalidad, a medida que vayas escribiendo, puedes presionar `Tab` para listar comandos que coincidan con lo que estás escribiendo o si el comando ya se distingue de otros y no has terminado de escribirlo puedes ejecutarlo sin culminarlo ya que como es distinguible neovim sabrá deducirá el comando que quieres ejecutar.
+Los argumentos (no sé si todos) se pueden pasar como comandos y no solo en la terminal. Hablando de los comandos, no es necesario escribir los comandos en su totalidad, a medida que vayas escribiendo, puedes presionar `Tab` para listar comandos que coincidan con lo que estás escribiendo o si el comando ya se distingue de otros y no has terminado de escribirlo puedes ejecutarlo sin culminar, mientras sea distinguible, neovim deducirá el comando que quieres ejecutar.
 
 ```bash
 :version       # La version de neovim
@@ -52,13 +52,13 @@ Los argumentos (no sé si todos) se pueden pasar como comandos y no solo en la t
 
 **Autocompletado:**
 
-Cuando escribes un comando, puedes presionar `Tab` para autocompletarlo y/o ver sugerencias de comandos. Imagina que tienes tres archivos de nombre `text1.txt, text2.txt y text3.txt` y quieres abrir uno de estos.
+Cuando escribes un comando, puedes presionar `Tab` para autocompletar y/o ver sugerencias de comandos. Imagina que tienes tres archivos de nombre `text1.txt, text2.txt y text3.txt` y quieres abrir uno de estos.
 
 ```bash
 :edit t<Tab>
 ```
 
-Al presionar `Tab` se abrirá una ventana emergente que mostrará todas las sugerencias que empiecen con "t", que serian los tres archivos y al presionar enter expande el resultado que seleccionamos.
+Al presionar `Tab` se abrirá una ventana emergente que mostrará todas las sugerencias que empiecen con "t", que serían los tres archivos y al presionar enter expande el resultado que seleccionamos.
 
 ```bash
 :edit text1.txt
@@ -80,13 +80,13 @@ Aquí está el corazón de vim/neovim, los modos son distintas formas en la que 
 
 - **Normal:** Puedes ejecutar combinaciones de teclas, moverte y ejecutar comandos.
 - **Inserción:** Editar el texto.
-- **Visual:** Puedes seleccinar con el cursor.
+- **Visual:** Puedes seleccionar con el cursor.
 - **Select:** Similar al modo visual.
 - **Replace:** Reemplazar caracteres.
 
 **Salir de vim**
 
-Para salir de vim en el modo normal, primero asegurate que estás en este modo presionando la tecla `Esc` una o dos veces y ejecuta cualquiera de los siguientes comandos.
+Para salir de vim en el modo normal, primero asegúrate que estás en este modo presionando la tecla `Esc` una o dos veces y ejecuta cualquiera de los siguientes comandos.
 
 ```bash
 :q       # Salir de manera normal (abreviado).
@@ -96,29 +96,29 @@ Para salir de vim en el modo normal, primero asegurate que estás en este modo p
 
 **Guardar**
 
-Ahora que ya trabajamos en nuestros archivos, lo que queremos hacer es guardarlos, esto tambien se hace desde el modo normal al ejecutar estos comandos.
+Ahora que ya trabajamos en nuestros archivos, lo que queremos hacer es guardarlos, esto también se hace desde el modo normal al ejecutar estos comandos.
 
 ```bash
 :w             # Guardado normal.
-:w <file.some> # Guardar en archivo especifico.
+:w <file.some> # Guardar en archivo específico.
 :wq            # Guardar + salir.
 :x             # Lo mismo que ":wq".
 ```
 
 **Ayuda**
-Obtener asistencia en vim es simple, la página de ayuda es muy completa y puedes buscar codo lo que necesites en el, o si quieres, puedes revisar la [documentación oficial de neovim](https://neovim.io/doc/).
+Obtener asistencia en vim es simple, la página de ayuda es muy completa y puedes buscar todo lo que necesites en el, o si quieres, puedes revisar la [documentación oficial de neovim](https://neovim.io/doc/).
 
 ```bash
 :help                 # Ayuda (extendido).
 :h                    # Ayuda (abreviado).
 :h <term>             # Paginas de termino especifico.
-:h <command>          # Paginas de comando especifico.
-:h <mode>_<command>   # Paginas de comando en modo especifico.
+:h <command>          # Páginas de comando especifico.
+:h <mode>_<command>   # Páginas de comando en modo específico.
 ```
 
 **Suspender neovim**
 
-Suspender neovim es ponerlo en segundo plano para volver a editar en él despues (mientras la terminal siga abierta, caso contrario, todos los procesos de fondo se eliminarán). Los tres comandos hacen lo mismo
+Suspender neovim es ponerlo en segundo plano para volver a editar en él después (mientras la terminal siga abierta, caso contrario, todos los procesos de fondo se eliminarán). Los tres comandos hacen lo mismo
 
 ```bash
 :stop
@@ -141,11 +141,11 @@ Las ventanas o pestañas de vim/neovim trabajan con tres abstracciones de visual
 
 - **Ventanas:**  Una "ventana" se refiere a una región en la pantalla donde se muestra el contenido de un buffer. Puedes tener múltiples ventanas abiertas en Vim, cada una mostrando diferentes partes del mismo archivo o mostrando contenido de distintos buffers.
 
-- **Pestañas:** las "pestañas" son contenedores que pueden alojar conjuntos de ventanas y buffers. Se utilizan para organizar y trabajar con varios conjuntos de archivos de manera más estructurada.
+- **Pestañas:** Las "pestañas" son contenedores que pueden alojar conjuntos de ventanas y buffers. Se utilizan para organizar y trabajar con varios conjuntos de archivos de manera más estructurada.
 
 ### Buffers
 
-Al abrir multiples archivos directamente con el comando `nvim` notarás que solo se muestra una ventana y una pestaña, pero abriste dos buffers, entonces, cómo sé que realmente los demás archivos se cargaron? Los comandos de buffer nos permitirán listarlos.
+Al abrir múltiples archivos directamente con el comando `nvim` notarás que solo se muestra una ventana y una pestaña, pero abriste dos buffers, entonces, cómo sé que realmente los demás archivos se cargaron? Los comandos de buffer nos permitirán listarlos.
 
 ```bash
 # Se abren 3 archivos con su respectivo buffer, pero solo se muestra text1.txt. 
@@ -164,9 +164,9 @@ Navegación:
 :bnext             # siguiente buffer.
 :bprev[ious]       # buffer anterior.
 :buffer [num]      # Buffer con numero especifico (listado).
-:buffer file.some  # Buffer de archivo especifico.
+:buffer file.some  # Buffer de archivo específico.
 
-Ctrl + o    # Buffer anterior (no solo los que abres, tambien los anteriores. Se crearán buffers por cada archivo que abras).
+Ctrl + o    # Buffer anterior (no solo los que abres, también los anteriores. Se crearán buffers por cada archivo que abras).
 Ctrl + i    # Buffer siguiente. 
 ```
 
@@ -200,7 +200,7 @@ nvim archivo1.txt
 Deberás ver el buffer del archivo que abriste, pero ahora si quiero abrir otro archivo pero en la misma ventana?, puedes ejecutar el siguiente comando dentro de neovim:
 
 ```bash
-:split archivo2.txt  # abrir archivo en pestaña horizantal encima de la actual
+:split archivo2.txt  # abrir archivo en pestaña horizontal encima de la actual
 :vsplit archivo2.txt # abrir archivo en pestaña verticale a la derecha de la actual
 ```
 
@@ -215,7 +215,7 @@ Ctrl-W K    # Moves the cursor to the window upper
 Ctrl-W L    # Moves the cursor to the right window
 ```
 
-Abrir un buffer en una ventana especifica. Si te posicionas en una ventana y escribes:
+Abrir un buffer en una ventana específica. Si te posicionas en una ventana y escribes:
 
 ```bash
 :buffer archivoN.txt
@@ -223,7 +223,7 @@ Abrir un buffer en una ventana especifica. Si te posicionas en una ventana y esc
 
 Se abrirá en esa ventana el buffer seleccionado.
 
-**Abrir multiples ventanas:**
+**Abrir múltiples ventanas:**
 
 Si abriste un archivo y tienes el cursor en este se abrirán ventanas con ese buffer:
 
@@ -234,7 +234,7 @@ Ctrl-W C  # Closes a window
 Ctrl-W O  # Makes the current window the only one on screen and closes other windows
 ```
 
-Si ejecutas el comando new se abrirá una ventana en blanco y a partir de ahí podras trabajar:
+Si ejecutas el comando new se abrirá una ventana en blanco y a partir de ahí podrás trabajar:
 
 ```bash
 :new    [file]
@@ -277,11 +277,12 @@ Puedes abrir neovim sin argumentos y se te abrirá el editor en blanco, y estand
 
 Si el archivo existe abre este, caso contrario lo crea.
 
-> <span style="display: flex; align-items: center;color: var(--blue); margin-bottom: 0rem;"><span style="font-family: 'Material'; font-size: 1.25rem; margin-right: .5rem">edit_note</span> **Nota** </span>
->  Si ejecutas muchos `edit` comandos se abrirán como buffers en ventanas distintas, como si ejecutaras `nvim <file1> <file2> ... <fileN>`. El comportamiento es apilar cada buffer, las ventanas estan encima y por debajo de otras.
+> [!Note]
+>  Si ejecutas muchos comandos `edit` se abrirán como buffers en ventanas distintas, como si ejecutaras `nvim <file1> <file2> ... <fileN>`. El comportamiento es apilar cada buffer, las ventanas están encima y por debajo de otras.
+>
 > Para ver todos los buffers ejecuta `:ls` en el modo normal.
 
-Podemos trabajar con un explorador de archivos nativo de neovim que se abre con el caracter punto (".") y que parte de nuestro directorio actual.
+Podemos trabajar con un explorador de archivos nativo de neovim que se abre con el carácter punto ("."), el cual parte de nuestro directorio actual.
 
 ```bash
 :edit .
@@ -307,9 +308,9 @@ Para movernos en neovim (en el modo normal) tenemos las siguientes teclas con su
 | h     | izquierda             | l     | derecha              | w        | inicio sig. palabra     |
 | j     | arriba                | k     | abajo                | e        | fin sig. palabra        |
 | W     | inicio sig. PALABRA   | E     | fin sig. PALABRA     | b        | inicio ant. palabra     |
-| B     | inicio ant. PALABRA   | %     | altern. brackets     | $        | fin de linea            |
-| ge    | fin ant. palabra      | gE    | fin ant. PALABRA     | 0 (cero) | inic. de linea          |
-| ^     | 1 char de linea       | g_    | ult. char. de linea  | n\|       | n colum de linea        |
+| B     | inicio ant. PALABRA   | %     | altern. brackets     | $        | fin de línea            |
+| ge    | fin ant. palabra      | gE    | fin ant. PALABRA     | 0 (cero) | inic. de línea          |
+| ^     | 1 char de línea       | g_    | ult. char. de línea  | n\|       | n colum de línea        |
 | {     | ant. párrafo          | }     | sig. párrafo         | n%       | n porciento del archivo |
 | gg    | inicio archivo        | G     | fin archivo          | nG       | linea número n          |
 | zt    | cursor inicio ventana | zz    | cursor medio ventana | zb       | cursor fin ventana      |
@@ -321,7 +322,7 @@ Estamos trabajando en un editor de texto, con lo cual queremos modificar el cont
 ```bash
 d + [[i|a] dpshjklwtbe...]      # eliminar (i dentro, a con el contenedor)
 d + i <caracter>                # eliminar el contenido dentro de ...
-d + a <caracter>                # eliminar el contenido mas el caracter ...
+d + a <caracter>                # eliminar el contenido más el caracter ...
 
 # caracteres (d + <tecla>)
 w                               # Una palabra
@@ -355,11 +356,11 @@ const hello = function() {
 }
 ```
 
-**Para buscar más sobre esto ejecuta el comando `:help text-objects`.**
+Para buscar más sobre esto ejecuta el comando `:help text-objects`.
 
-## Busqueda
+## Búsqueda
 
-Para buscar palabras, párrafos enteros o lo que desees puedes hacerlo desde el modo normal con `/` o `?` y tu término a buscar, por ejemplo si quieres la palabra "variable" ejecutarias el comando `/variale` o `?variable`. los siguientes operadores en la tabla parten de encontrar coincidencias con las busquedas anteriores.
+Para buscar palabras, párrafos enteros o lo que desees puedes hacerlo desde el modo normal con `/` o `?` y tu termino a buscar, por ejemplo si quieres la palabra "variable" ejecuta el comando `/variale` o `?variable`. Los siguientes operadores en la tabla parten de encontrar coincidencias con las búsquedas anteriores.
 
 | Tecla | Posición             | Tecla        | Posición                     | Tecla    | Posición                     |
 | ----- | -------------------- | ------------ | ---------------------------- | -------- | ---------------------------- |
@@ -367,25 +368,25 @@ Para buscar palabras, párrafos enteros o lo que desees puedes hacerlo desde el 
 | //    | Ejec. Busq. anterior | Ctrl + p     | Anterior busqueda (/ comnd)  | Ctrl + n | Siguiente busqueda (/ comnd) |
 | N     | ant. coincidencia    | \*            | sig. palabra igual al cursor | #        | ant. palabra igual al cursor |
 
-><span style="display: flex; align-items: center;color: var(--red); margin-bottom: .75rem;"><span style="font-family: 'Material'; font-size: 1.25rem; margin-right: .5rem">priority_high</span> **Importante** </span>
-> Si quieres hacer busquedas con regexp por lo general tendrás que escapar algunos caracteres para que no los tome de manera literal como `{}` para los contadores o `|` para un patron u otro, cuantificadores como `+, ?, ...` y así.
-> Si no quieres escaparlo inicia la secuencia de regexp con `\v` (magic syntax) por ejemplo: `/\v(id|div)+`  porque sin `\v` sería `/\(id\|div\)\+`.
+> [!Tip]
+> Si quieres hacer búsquedas con regexp por lo general tendrás que escapar algunos caracteres para que no los tome de manera literal como `{}` para los contadores o `|` para un patrón u otro, cuantificadores como `+, ?, ...` y así.
+> Si no quieres escaparlo, inicia la secuencia de regexp con `\v` (magic syntax) por ejemplo: `/\v(id|div)+`  porque sin `\v` sería `/\(id\|div\)\+`.
 
 ```bash
-\d   # Digito [0-9]
+\d   # Dígito [0-9]
 \D   # No digito [^0-9]
 \s   # Caracteres de espaciado (espacio y tab)
 \S   # Caracteres de no espaciado (todo excepto espacio y tab)
 \w   # Alfanumérico [0-9A-Za-z_]
-\l   # Caracteres en minuscula [a-z]
+\l   # Caracteres en minúscula [a-z]
 \u   # Caracteres en mayuscula [A-Z]
 ```
 
 ## Sustitución
 
-Para reemplazar una palabra o tantas coincidencias querramos, podemos hacer esto desde el modo normal con las siguientes instrucciones.
+Para reemplazar una palabra o tantas coincidencias como queramos, podemos operar desde el modo normal con las siguientes instrucciones.
 
-Para sustitución básica (desde la linea del cursor en adelante) puedes ejecutar:
+Para sustitución básica (desde la línea del cursor en adelante) puedes ejecutar:
 
 ```bash
 :s/pattern/replace/[flag]
@@ -402,13 +403,13 @@ i   # Perform case insensitive substitution.
 I   # Perform case sensitive substitution.
 ```
 
-Para una sustitución extendida (% significa de archivo completo, pero solo la primer coincidencia de cada linea) ejecutamos:
+Para una sustitución extendida (% significa de archivo completo, pero solo la primer coincidencia de cada línea) ejecutamos:
 
 ```bash
 :%s/pattern/replace/[flag]
 ```
 
-En el tópico de [Busqueda](#Busqueda) vemos la combinación de teclas `//` que es la busqueda anterior que se hizo y podemos aprovechar eso, por ejemplo buscamos `/hola`, entonces al ejecutar `//` estariamos buscando "hola" y podemos reemplazarlo en nuestra sustitución.
+En el tópico de [Búsqueda](#Busqueda) vemos la combinación de teclas `//` que es la búsqueda anterior que se hizo y podemos aprovechar eso, por ejemplo buscamos `/hola`, entonces al ejecutar `//` estariamos buscando "hola" y podemos reemplazarlo en nuestra sustitución.
 
 ```bash
 :[%]s//replace/[flag]
@@ -424,7 +425,7 @@ y el comando `:s` o la tecla `&` son un shortcut para nuestro último reemplazo,
 
 **Sustitución entre rangos:**
 
-Podemos sustituir en lineas especificas o entre lineas especificas, del siguiente modo
+Podemos sustituir en líneas especificas o entre lineas especificas, del siguiente modo
 
 ```bash
 "El formato [algo] es de un parámetro opcional y el formato <algo> es de un parámetro requerido"
@@ -432,19 +433,19 @@ Podemos sustituir en lineas especificas o entre lineas especificas, del siguient
 # Formato
 :[[inicio],[fin]]s/pattern/replace/[flag]  # formato general.
 
-:<num>s/pattern/replace/[flag]              # Solo reemplaza en la linea num.
-:<num>,s/pattern/replace/[flag]             # empezando en la linea num hasta la actual.
-:,<num>s/pattern/replace/[flag]             # Desde la linea actual hasta la linea num.
-:<i>,<f>s/pattern/replace/[flag]            # Desde la linea i hasta la linea f.
+:<num>s/pattern/replace/[flag]              # Solo reemplaza en la línea num.
+:<num>,s/pattern/replace/[flag]             # empezando en la línea num hasta la actual.
+:,<num>s/pattern/replace/[flag]             # Desde la línea actual hasta la línea num.
+:<i>,<f>s/pattern/replace/[flag]            # Desde la línea i hasta la línea f.
 
 #Ejemplos
-:3s/pattern/replace/[flag]          # Reemplaza la liena 3.
-:3,s/pattern/replace/[flag]         # Reemplaza desde la linea 3 hasta la actual.
-:,80s/pattern/replace/[flag]        # Reemplaza desde la linea actual hasta la linea 80.
-:1,6s/pattern/replace/[flag]        # Reemplaza desde la linea 1 hasta la linea 6.
+:3s/pattern/replace/[flag]          # Reemplaza la línea 3.
+:3,s/pattern/replace/[flag]         # Reemplaza desde la línea 3 hasta la actual.
+:,80s/pattern/replace/[flag]        # Reemplaza desde la línea actual hasta la línea 80.
+:1,6s/pattern/replace/[flag]        # Reemplaza desde la línea 1 hasta la línea 6.
 ```
 
-> <span style="display: flex; align-items: center;color: var(--blue); margin-bottom: 0rem;"><span style="font-family: 'Material'; font-size: 1.25rem; margin-right: .5rem">lightbulb</span> **Tip** </span>
+> [!Tip]
 > El caracter `\0` y el caracter `&` representan al patron coincidente, ten esto en cuenta cuando quieras agregar cosas a algo que ya tienes, por ejemplo si quieres agregar comillas a tus números ejecuta `:%s/\d\+/"\0"` o `:%s/\d\+/"&"` que busca todos los números y los encierra entre comillas ya que `\0` y `&` representan a `\d\+` (nuestro patron de búsqueda).
 >
 > **Los caracteres no guardan las banderas**.
@@ -470,13 +471,13 @@ three let = "3";
 
 - Cada `(\w+)` es un [grupo](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Groups_and_backreferences#types) (porque están entre paréntesis en una regexp) y cada grupo está enumerado por un índice que empieza en uno y termina en el número de grupos que exista.
 
-- \\1 y \\2 son los índices, entonces estamos diciendo que busque el patron el la primera expresion y en la segunda le decimos que ponga el grupo dos al inicio y el grupo uno después o al final (que en este caso es lo mismo).
+- \\1 y \\2 son los índices, entonces estamos diciendo que busque el patrón o patrones en la primera expresión (/\v(\w+) (\w+)/)  y en la segunda le decimos que ponga el grupo dos al inicio y el grupo uno después o al final (que en este caso es lo mismo).
 
 Solo considerará los grupos existentes, por ejemplo poner `\3` no hará nada.
 
 **Cambiar delimitador de sustitución:**
 
-A veces tendremos la necesidad de cambiar el delimitador ya que es complejo verlo si trabajamos sin `magic` o con urls, etc. Cambiarlo es tan simple como reemplazarlo con cualquier caracter de un byte unicode que **no sean letras del alfabeto, números o `"`, `|`y `\`**.
+A veces tendremos la necesidad de cambiar el delimitador ya que es complejo verlo si trabajamos sin `magic` o con urls, etc. Cambiarlo es tan simple como reemplazarlo con cualquier caracter de un byte unicode que **no sean letras del alfabeto, números o `"`, `|`y `\`**.
 
 ```bash
 # + es el delimitador
@@ -495,15 +496,15 @@ Para deshacer o rehacer tus cambios (en el modo normal) tienes un gran abanico d
 | Tecla      | Posición                 | Tecla    | Posición               | Tecla    | Posición                      |
 | ---------- | ------------------------ | -------- | ---------------------- | -------- | ----------------------------- |
 | u          | Deshacer último cambio   | Ctrl + r | Rehacer último cambio  | U        | Deshace todos cambios (linea) |
-| Ctrl + g u | Delimitar bloque cambio  | g + "+"  | Deshacer cambios arbol | g + "-"  | Rehacer cambios arbol         |
+| Ctrl + g u | Delimitar bloque cambio  | g + "+"  | Deshacer cambios árbol | g + "-"  | Rehacer cambios árbol         |
 
 ## Insert mode
 
-El modo de insersión de texto permite la edición de texto, pero comúnmente vas a intercalarlo con el normal para ejecutar comandos o desplazarte.
+El modo de inserción de texto permite la edición de texto, pero comúnmente vas a intercalar con el modo normal para ejecutar comandos o desplazarte.
 
 | Tecla    | Posición                 | Tecla    | Posición               | Tecla    | Posición               |
 | -------- | ------------------------ | -------- | ---------------------- | -------- | ---------------------- |
-| i        | Insert. antes cursor     | I        | Insert. antes linea    | a        | Insert. despues cursor |
+| i        | Insert. antes cursor     | I        | Insert. antes línea    | a        | Insert. despues cursor |
 | A        | Insert. fin linea        | o        | Insert. debajo linea   | O        | Insert. encima linea   |
 | s        | Del. char & insertar     | S        | Borra linea & insert   | b        | inicio ant. palabra    |
 | Ctrl + h | Borrar anterior caracter | Ctrl + w |Borrar palabra anterior | Ctrl + u |Borrar linea            |
@@ -518,7 +519,7 @@ Cuando se procesa y termina la ejecución del comando, el resultado de este se p
 
 ## Comando punto
 
-El comando punto nos permite rehacer cambios rapidamente.
+El comando punto nos permite rehacer cambios rápidamente.
 
 ```js
 let one = "1";
@@ -541,10 +542,10 @@ El modo visual es similar a seleccionar fragmentos largos manteniendo click en e
 
 | Tecla    | Posición                   | Tecla    | Posición               | Tecla    | Posición                |
 | -------- | -------------------------- | -------- | ---------------------- | -------- | ----------------------- |
-| v        | Modo visual (normal)       | V        | Modo visual (linea)    | Ctrl + v | Modo visual (bloque)    |
-| gU       | Conv. mayusculas selec.    | gv       | Modo visual anterior   | o        | Intercalar posc. cursor |
+| v        | Modo visual (normal)       | V        | Modo visual (línea)    | Ctrl + v | Modo visual (bloque)    |
+| gU       | Conv. mayúsculas selec.    | gv       | Modo visual anterior   | o        | Intercalar posc. cursor |
 | x        | Eliminar texto selec.      | y        | Copiar seleccion       | d        | Eliminar texto selec.   |
-| r [char] | Reemp. toda linea por char | -        | -                      | -        | -                       |
+| r [char] | Reemp. toda línea por char | -        | -                      | -        | -                       |
 
 Para **reemplazar en bloque** ejecuta (en cualquier modo visual) el siguiente comando sin borrar nada que genere neovim:
 
@@ -603,10 +604,10 @@ $let arr3 = [3,"tres"]
 $let str4 = "cuatro"
 ```
 
-Como explicamos es **antes y despues de la selección, no del cursor** a tener en cuenta.
+Como explicamos es **antes y después de la selección, no del cursor** a tener en cuenta.
 
-> <span style="display: flex; align-items: center;color: var(--blue); margin-bottom: 0rem;"><span style="font-family: 'Material'; font-size: 1.25rem; margin-right: .5rem">edit_note</span> **Nota** </span>
-> Si está en el modo visual normal puede ejecutar el comando `:normal! [A|I]<string>` para insertar texto en bloque del mismo modo que ya vimos. Se ponen al inicio o final de la linea (según hayas escogido `A` o `I`) y no importa que hayas seleccionado solo una porcion y no toda la linea, la inserción se hará en estos.
+> [!Nota]
+> Si está en el modo visual normal puede ejecutar el comando `:normal! [A|I]<string>` para insertar texto en bloque del mismo modo que ya vimos. Se ponen al inicio o final de la línea (según hayas escogido `A` o `I`) y no importa que hayas seleccionado solo una porción y no toda la línea, la inserción se hará en estos.
 
 
 **Incremento y disminucion:**
@@ -624,7 +625,7 @@ La utilidad `$` de [Emmet - item numbering](https://docs.emmet.io/abbreviations/
 ```
 
 > [!Warning]
-> Está seleccionado desde la segunda fila por una razón, si empezamos por la primera fila va a incrementar todo de manera secuencial `2, 3, 4, 5 y 6`, pero lo que queremos esque empiece en `1, 2, 3, 4, 5` por eso el cursor empieza en segunda posición.
+> Está seleccionado desde la segunda fila por una razón, si empezamos por la primera fila va a incrementar todo de manera secuencial `2, 3, 4, 5 y 6`, pero lo que queremos es que empiece en `1, 2, 3, 4, 5` por eso el cursor empieza en segunda posición.
 
 El modo es el visual por bloque y solo tomando los unos, ahora presionaremos `g Ctrl + a` para incrementar, con cual se verá así:
 
@@ -646,11 +647,11 @@ Y si ahora (empezando desde el uno) seleccionas todos los números (en bloque) y
 <div id="app-4"></div>
 ```
 
-Tambien trabaja con letras.
+También trabaja con letras.
 
 ## Comandos
 
-Podemos ejecutar comandos para insertarlos en nuestro archivo como vimos en el [Insert mode](#insert-mode), pero existe otra manera de hacer esto (el resultado del comando se insertará en la linea en la que se encuentre tu cursol):
+Podemos ejecutar comandos para insertarlos en nuestro archivo como vimos en el [Insert mode](#insert-mode), pero existe otra manera de hacer esto (el resultado del comando se insertará en la línea en la que se encuentre tu cursor):
 
 ```bash
 :[line]r !<comando>
@@ -673,11 +674,11 @@ Realmente el comando `r` es para leer el contenido de archivos y lo hace si le p
 :[line]r file.txt
 ```
 
-Tambien acepta una linea, por ejemplo `10r !ls` hará que el resultado del comando se ponga bajo la linea 10 y desplazando a el contenido que estaba bajo esa linea ahora bajo el resultado del comando.
+También acepta una línea, por ejemplo `10r !ls` hará que el resultado del comando se ponga bajo la línea 10 y desplazando a el contenido que estaba bajo esa línea ahora bajo el resultado del comando.
 
-> <span style="display: flex; align-items: center;color: var(--blue); margin-bottom: 0rem;"><span style="font-family: 'Material'; font-size: 1.25rem; margin-right: .5rem">edit_note</span> **Nota** </span>
+> [!Note]
 > Para desplazarte puedes hacerlo con las flechas izquierda y derecha, pero esto es caracter por caracter, si quieres palabra por palabra sería con `Shift + izquierda` y `Shift + derecha`.
-> Si quieres desplazarte al inicio presiona `Ctrl + b` y para ir al fin de la linea `Ctrl + e`
+> Si quieres desplazarte al inicio presiona `Ctrl + b` y para ir al fin de la línea `Ctrl + e`
 
 **Ejecutar comandos de archivo como argumento:**
 
@@ -687,7 +688,7 @@ Podemos ejecutar comandos en una vista similar a la de una pseudoterminal con `:
 :[num[,fin]]w !<comando>
 ```
 
-Podemos agregarle uno o dos números de linea para que el comando lea solo esa linea o el rango de lineas que se pasaron.
+Podemos agregarle uno o dos números de línea para que el comando lea solo esa línea o el rango de líneas que se pasaron.
 
 **Ejecutando comandos en la terminal integrada de neovim:**
 
@@ -701,10 +702,10 @@ No le veo mucha utilidad como reemplazo a una terminal, pero sí para editar tex
 
 **Repetir el último comando:**
 
-Si no queremos volver a escribir ni navegar hasta el último comando podemos ejecutar el comando `@:` y listo, se ejecutará el ultimo comando.
+Si no queremos volver a escribir ni navegar hasta el último comando podemos ejecutar el comando `@:` y listo, se ejecutará el último comando.
 
-> <span style="display: flex; align-items: center;color: var(--red); margin-bottom: .75rem;"><span style="font-family: 'Material'; font-size: 1.25rem; margin-right: .5rem">priority_high</span> **Importante** </span>
-> Recuerda que si quieres hacer cambios en todo el documento puedes usar `%` en vez de numeros o intervalos.
+> [!Tip]
+> Recuerda que si quieres hacer cambios en todo el documento puedes usar `%` en vez de números o intervalos.
 
 **Historial de comandos:**
 
@@ -728,7 +729,7 @@ Esto solo es una lista, ahora ¿Cómo podemos ejecutar un comando de estos?, pue
 Con "doblar" me refiero a colapsar texto, como el de un editor que quiere ocultar bloques de código que no quiere ver pero sin eliminarlos, ¿cómo podemos colapsar texto?, pues con la tecla `z`.
 
 ```bash
-zf    # colapsar selección o puedes moverte con teclas de desplazamiento y sus numeros.
+zf    # colapsar selección o puedes moverte con teclas de desplazamiento y sus números.
 zo    # abrir colapso.
 zc    # cerrar colapso.
 za    # hacer un toggle entre abrir y cerrar el colapso.
@@ -742,7 +743,7 @@ zE    # Borra todos los pliegues del archivo.
 
 ## Tips
 
-Para indendar podemos hacer dos cosas, la primera es el indentado simple, que todo lo seleccionado vaya un espacio de tabulación antes o despues del que querramos, que se hace con:
+Para indentar podemos hacer dos cosas, la primera es el indentado simple, que todo lo seleccionado vaya un espacio de tabulación antes o después del que queramos, que se hace con:
 
 ```vim
 >>
@@ -751,6 +752,6 @@ Para indendar podemos hacer dos cosas, la primera es el indentado simple, que to
 <<num>
 ```
 
-La notacíon de `<num>` hace referencia a un número, entonces si presionamos `2 + >` entonces hará dos tabulaciones o indentará con doble sangría. Lo mismo con `<` para reducir la sangría.
+La notación de `<num>` hace referencia a un número, entonces si presionamos `2 + >` entonces hará dos tabulaciones o indentará con doble sangría. Lo mismo con `<` para reducir la sangría.
 
-Y el indentado "inteligente", simplemente si estamos sobre una linea presionamos `= + =` o si estamos sobre un bloque de manera **visual** o **visual de bloque** simplemente con `=` se indenta respetando la jerarquía de donde se encuenta todo.
+Y el indentado "inteligente", simplemente si estamos sobre una línea presionamos `= + =` o si estamos sobre un bloque de manera **visual** o **visual de bloque** simplemente con `=` se indica respetando la jerarquía de donde se encuentra todo.

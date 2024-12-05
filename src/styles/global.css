@@ -1,4 +1,9 @@
 :root {
+    color-scheme: light dark;
+
+    /* Tema claro */
+    --background-light: #f7f7f2; /* Color de fondo claro suave */
+    --foreground-light: #1a1a1a; /* Color de texto oscuro profundo para buen contraste */
     /* colors */
     --background: #0b0b0c;
 	--foreground: #F5F5DC;
@@ -30,15 +35,10 @@
 
     /* Pagefinder */
     --pagefind-ui-scale: .75;
-    /* --pagefind-ui-primary: #034ad8; */
-    --pagefind-ui-text: var(--foreground);
+    --pagefind-ui-text: light-dark(var(--foreground-light), var(--foreground-white)); 
     --pagefind-ui-background: transparent;
-    --pagefind-ui-border: rgb(var(--box-shadow-color), 0.75);
-    --pagefind-ui-tag: #eeeeee;
-    --pagefind-ui-border-width: 2px;
+    --pagefind-ui-border: rgb(var(--box-shadow-color));
     --pagefind-ui-border-radius: 1rem;
-    --pagefind-ui-image-border-radius: 8px;
-    --pagefind-ui-image-box-ratio: 3 / 2;
     --pagefind-ui-font: 'Poppins', 'monospace';
 }
 @font-face {
@@ -89,7 +89,8 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: var(--background);
+	background-color: light-dark(var(--background-light), var(--background));
+    color: light-dark(var(--foreground-light), var(--foreground));
 	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
@@ -145,7 +146,6 @@ a:hover {
     text-decoration: underline;
 }
 .anchor {
-    color: var(--foreground);  
     display: flex;
     align-items: center;
     margin: 3rem 0;
@@ -173,10 +173,10 @@ a:hover {
     }
 }
 a.anchor-link {
-    color: var(--foreground);  
+    color: light-dark(var(--foreground-light), var(--foreground));  
 
     &::visited {
-        color: var(--foreground);  
+        color: light-dark(var(--foreground-light), var(--foreground));  
     }
 }
 p {
@@ -215,8 +215,8 @@ img {
 }
 code {
     margin: 1px;
-	background-color: var(--gray-transparent);
-    color: var(--foreground);
+	background-color: light-dark(#3f3f40,var(--gray-transparent));
+    color: light-dark(var(--foreground-white),var(--foreground-white));
 	border-radius: 4px;
     font-size: clamp(0.8333rem, 0.5667rem + 1.3333vw, 0.9rem);
     padding: 2px 4px 2px;
@@ -280,6 +280,10 @@ button {
     cursor: pointer;
 }
 
+.hamburger svg path{
+        fill: light-dark(var(--foreground-light), var(--foreground)); 
+}
+
 /* ---- custom scroll-bar  */
 ::-webkit-scrollbar {
     width: 18px;
@@ -292,7 +296,13 @@ button {
 ::-webkit-scrollbar-thumb {
     background-color: var(--red);
     /*border-radius: 10px;*/
-    border: 6px solid var(--background);
+    border: 1px solid var(--background);
+}
+
+@media screen and (min-width: 720px) {
+    ::-webkit-scrollbar-thumb {
+        border: 6px solid var(--background);
+    }
 }
 
 .sr-only {
@@ -316,34 +326,24 @@ button {
 a.to-pages {
     display: block;
     width: fit-content;
-    background-color: var(--background);
+    background-color: light-dark(var(--background),var(--foreground-white));
     border: none;
-    padding: 1rem 2rem;
-    margin: 5rem auto 0rem;
-    color: var(--white);
-    font-size: var(--font-0);
+    padding: .75rem 1rem;
+    margin: 2rem auto 0rem;
+    color: light-dark(var(--white),var(--background));
+    border: 2px solid light-dark(var(--background),var(--foreground-white));
+    font-size: var(--font--1);
     font-weight: bold;
     position: relative;
     border-radius: 10px;
+    transition: all .15s linear;
 
     &:hover {
+        background-color: light-dark(var(--foreground-light),var(--background));
+        color: light-dark(var(--background),var(--white));
         text-decoration: none;
-    }
-
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background-image: linear-gradient(45deg, red, blue, deeppink, blue, red, blue, deeppink, blue);
-        background-size: 800%;
-        border-radius: 10px;
-        filter: blur(8px);
-        animation: glowing 40s linear infinite;
-    }
+        border: 2px solid rgb(var(--box-shadow-color));
+    } 
 }
 
 @keyframes glowing {
@@ -357,3 +357,28 @@ a.to-pages {
         background-position: 0 0;
     }
 }
+
+.markdown-alert {
+    border-radius: 0 10px 10px 0;
+}
+
+.markdown-alert.markdown-alert-note {
+    background-color: #0969da35;
+}
+
+.markdown-alert.markdown-alert-tip {
+    background-color: #1f883d35;
+}
+
+.markdown-alert.markdown-alert-important {
+    background-color: #8250df35;
+}
+
+.markdown-alert.markdown-alert-warning {
+    background-color: #9a670035;
+}
+
+.markdown-alert.markdown-alert-caution {
+    background-color: #cf222e35;
+}
+

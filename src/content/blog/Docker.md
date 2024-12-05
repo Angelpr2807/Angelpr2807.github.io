@@ -3,16 +3,16 @@ title: 'Docker'
 description: 'Introducción a docker y contenedores en entornos linux.'
 pubDate: 'May 27 2024'
 updatedDate: 'May 31 2024'
-heroImage: '/images/linux/docker.png'
+heroImage: '/images/linux/docker.webp'
 ---
 
 ## Docker
 
-Docker es una tecnología de contenedores, que es un entorno cargado con un sistema linux mínimo (aún menor que una máquina virtual) que nos permite estandarizar un entorno en el que está cargado un conjunto de software para que funcione para todos de igual manera siendo agnostico a la versión y tecnologías.
+Docker es una tecnología de contenedores, que es un entorno cargado con un sistema linux mínimo (aún menor que una máquina virtual) que nos permite estandarizar un entorno en el que está cargado un conjunto de software para que funcione para todos de igual manera siendo agnóstico a la versión y tecnologías.
 
 ![container-meme](https://blog.kintoandar.com/images/containers_not_vms.jpg)
 
-> <span style="display: flex; align-items: center;color: var(--red); margin-bottom: .75rem;"><span style="font-family: 'Material'; font-size: 1.25rem; margin-right: .5rem">priority_high</span> **Importante** </span>
+> [!Important]
 > Los contenedores Docker utilizan el kernel del sistema operativo anfitrión. En Windows y macOS, **Docker Desktop** emplea una máquina virtual con un kernel de Linux para ejecutar contenedores Linux, lo que puede afectar el rendimiento y la compatibilidad comparado con un entorno Linux nativo.
 
 Partes de un **contenedor**:
@@ -27,8 +27,13 @@ La **diferencia** entre un contenedor y una imágen es que la imágen es inmutab
 
 ## Empezando con docker
 
-> <span style="display: flex; align-items: center;color: var(--green); margin-bottom: .75rem;"><span style="font-family: 'Material'; font-size: 1.25rem; margin-right: .5rem">info</span> **Aviso** </span>
-> Estoy usando arch linux y por esto hay dos cosas importantes para trabajar con docker en esta distro, instalé `docker` y `docker compose`, así que cubriremos un poco de `docker compose` luego. Despues de la instalación es necesario que agregues a tu usuario al grupo `docker` con `sudo usermod -aG docker <user>`, luego reinicia el equipo para que se tomen los cambios y no tengas que ejecutar todos los comandos docker con `sudo`. Tambien es necesario activar el demonio de `docker.socket`, hazlo con `sudo systemctl start docker.socket`, no te debería dar error, pero si se presenta, puedes ver si el demonio de `docker.service` está activo, caso contrario activalo y si aún sigues viendo errores, puedes ver los **_logs_** o consultar en foros.
+Estoy usando Arch Linux, y para trabajar con Docker es importante:
+
+- Instalar `docker` y `docker compose`.
+- Añadir tu usuario al grupo de Docker con `sudo usermod -aG docker <usuario>`, luego reiniciar el sistema para evitar usar `sudo` en cada comando.
+- Activar el demonio de `docker.socket` con `sudo systemctl start docker.socket`. Si surge algún error, verifica que `docker.service` esté activo; si persiste, revisa los **_logs_** o consulta en foros.
+
+Si estás usando otras distros o SOs pueden haber diferencias en los pasos que tienes que seguir, te sugiero que leas la documentación y continúes una vez configurado todo.
 
 Para tener una imágen, podemos hacer dos cosas, en primer lugar podemos crearlo nosotros mismos o descargar una ya hecha por la comunidad y descargarla en [Dockerhub](https://hub.docker.com).
 
@@ -77,7 +82,7 @@ y ahora si queremos ejecutar el contenedor podemos ejecutar el comando (si no ti
 docker run ubuntu
 ```
 
-Podemos descargar diferentes versiones de una sola imagen o conjunto de software de una imágen en el apartado de `tags` de la imágen en dockerhub, por ejemplo:
+Podemos descargar diferentes versiones de una sola imagen o conjunto de software de una imágen en el apartado de `tags` de la imágen en docker hub, por ejemplo:
 
 ```bash
 docker run ubuntu:noble-20240212
@@ -89,10 +94,11 @@ Es un archivo de configuración para crear una imágen y se despliegue de manera
 
 ## Docker compose
 
-Docker compose es un superset de docker, lo que nos permite ejecutar contenedores y desplegarlos de manera simple, puedes pasar parámetros, definir redes locales, compartir recursos, volumenes, etc.
+Docker Compose es un superset de docker, lo que nos permite ejecutar contenedores y desplegarlos de manera simple, puedes pasar parámetros, definir redes locales, compartir recursos, volúmenes, etc.
 
-La simplisidad de docker compose reside en que todo lo que quieras desplegar se configura en un solo archivo y la manera de usarlo es simple, tambien los errores se solucionan de manera simple ya que compose hace todo lo posible por mitigarlos.
+La simplicidad de docker compose reside en que todo lo que quieras desplegar se configura en un solo archivo y presenta una sintaxis simple, los errores se solucionan de manera sencilla ya que compose hace todo lo posible por mitigarlos.
 
-Puedes encontrar documenación en [Docker compose](https://docs.docker.com/compose/).
+Puedes encontrar documentación en [Docker compose](https://docs.docker.com/compose/).
 
-> **Nota:** No se ahonda más en este tema porque no cuento con tanta experiencia con **docker compose** y quisiera entregar un artículo más desarrollado y corregio, con lo cual este se actualizará en un futuro y tendrá esta sección actualizada. Espero su comprensión :).
+> [!Note]
+> No se ahonda más en este tema porque no cuento con tanta experiencia con **docker compose** y quisiera entregar un artículo más robusto y corregido, con lo cual actualizaré este artículo en un futuro. Espero su comprensión 🥲.

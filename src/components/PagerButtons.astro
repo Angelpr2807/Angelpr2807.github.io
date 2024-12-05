@@ -6,7 +6,7 @@ const firsts = [1, 2, 3];
 const lasts = [limit, limit-1, limit-2];
 
 function pagesToLink() {
-    let i;
+    let i = 0;
 
     if (firsts.includes(current)) {
         i = 1 ;
@@ -20,7 +20,7 @@ function pagesToLink() {
     
     let allPages = [];
 
-    for (i; i <= top; i++ ){
+    for (i; i <= top; i++){
         allPages.push(i);
         if (i === limit) break;
     }
@@ -37,17 +37,17 @@ const totalPages = pagesToLink();
 </div>
 
 <style>
-.pager-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 3rem 0 0;
-}
-
-@media screen and (min-width: 720px){
     .pager-buttons {
-        width: 50%;
-        margin: 3rem auto 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 3rem 0 0;
     }
-}
+
+    @media screen and (min-width: 720px){
+        .pager-buttons {
+            width: 50%;
+            margin: 3rem auto 0;
+        }
+    }
 </style>

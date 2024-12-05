@@ -4,16 +4,11 @@ import Header from './Header.astro';
 import Footer from './Footer.astro';
 import PagerButtons from './PagerButtons.astro';
 import { SITE_TITLE, SITE_DESCRIPTION, LIMIT_POSTS } from '../consts';
-import { getCollection } from 'astro:content';
-
 const url = new URL(Astro.url.pathname, Astro.site);
 const canonicalURL = url.origin;
 const { prev, next, pages, current } = Astro.props;
-
-const posts = (await getCollection('blog')).sort(
-	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
-).reverse().slice(0, LIMIT_POSTS);
 ---
+
 <!doctype html>
 <html lang="es">
 	<head>
@@ -28,13 +23,11 @@ const posts = (await getCollection('blog')).sort(
                 padding: 0 1.5rem;
 			}
             h1 {
-                color: var(--foreground);
                 text-align: center;
                 margin-bottom: 2rem;
             }
 			
             p {
-                color: var(--foreground);
                 font-size: var(--font-0);
                 text-align: center;
             }
@@ -61,7 +54,7 @@ const posts = (await getCollection('blog')).sort(
             <div id="search"></div>
 			<section>
                 <slot />
-                <PagerButtons limit={pages} prev={prev} next={next} current={current} />
+        <PagerButtons limit={pages} prev={prev} next={next} current={current} />
             </section>
 		</main>
 		<Footer />
@@ -69,7 +62,7 @@ const posts = (await getCollection('blog')).sort(
 </html>
 
 <script is:inline>
-    window.addEventListener('DOMContentLoaded', (event) => {
+    window.addEventListener('DOMContentLoaded', () => {
         if (document.querySelector("#search") !== null) {
             new PagefindUI({ element: "#search", showSubResults: true });
         }

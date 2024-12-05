@@ -10,7 +10,7 @@ Bienvenidos a la resolución de la máquina **Psymin** de la plataforma VulNyx, 
 ![psymin machine info](/images/machines/psymin/psymin.webp)
 ## Enumeración
 
-Primero veremos los puertos que estan abiertos y que servicios están expuestos:
+Primero veremos los puertos que están abiertos y que servicios están expuestos:
 
 ```bash
 sudo nmap -p- -sS -Pn -n --open --min-rate 5000 10.0.2.10 -vvv -oG allPorts
@@ -62,9 +62,11 @@ PORT     STATE SERVICE REASON  VERSION
 
 Los servicios que más me llaman la atención son `HTTP` en el puerto 80 y 3000. Digo que el puerto 3000 ejecuta un servicio web ya que veo en el resultado de los scripts de reconocimiento varias cabeceras HTTP como `GET / HTTP/1.0` u `OPTIONS / HTTP/1.0`.
 
+Revisando el puerto 80 no encuentro nada interesante ni en el código fuente o haciendo _fuzzing_ de directorios o archivos. También revisé si existían los archivos `robots.txt` o `sitemap.xml` sin encontrar ninguno de estos.
+
 ![port 80](/images/machines/psymin/port80.webp)
 
-Revisando el puerto 80 no encuentro nada interesante ni en el código fuente o haciendo _fuzzing_ de directorios o archivos. Tambien revisé si existián los archivos `robots.txt` o `sitemap.xml` sin encontrar ninguno de estos.
+Ahora me conecto al puerto 3000 y me retorna en texto plano unas líneas un poco extrañas que son más como encabezados de una respuesta HTTP.
 
 ![port 3000](/images/machines/psymin/port3000.webp)
 
@@ -76,7 +78,7 @@ Usando **burpsuite** cambiamos el método de solicitud por código PHP a ver qu�
 
 Como vimos en nuestro navegador los campos que se ejecutan como "comandos" en **psy shell** son el método `GET / HTTP/1.1` y los encabezados `User-Agent` y `accept`, no cambiaría `host` debido a que la solicitud ya no se haría a este equipo.
 
-Voy a reemplazar la linea del método de solicitud por código arbitrario PHP como el siguiente:
+Voy a reemplazar la línea del método de solicitud por código arbitrario PHP como el siguiente:
 
 ```php
 // Linea original
@@ -111,9 +113,10 @@ cat $HOME/user.txt
 e12853......
 ```
 
-Ahora quiero mantener acceso al usuario alfred y en su `$HOME` veo que tiene el directorio `.ssh`  con su `id_rsa`, la copio de manera local y lo uso para acceder a la máquina por ssh.
+Ahora quiero mantener acceso al usuario alfred y en su `$HOME` veo que tiene el directorio `.ssh`  con su `id_rsa`, la descargo a mi equipo o copio su contenido en un archivo local y lo uso para acceder a la máquina por ssh.
 
-> Es importante que `id_rsa` tenga los permisos 600, puedes hacerlo con `chmod 600 id_rsa`.
+> [!Important]
+> Es necesario que el archivo `id_rsa` de alfred tenga los permisos **600** para que puedas conectarte por ssh, puedes modificar los permisos del archivo con `chmod 600 id_rsa`.
 
 ```bash
 ssh alfred@10.0.2.10 -i id_rsa
@@ -152,7 +155,7 @@ sudo -l
 
 No obtengo buenos resultados con `find` y el comando `sudo` no existe.
 
-En segundo lugar busco procesos que se estén ejecutando en segundo plano y/o de manera periodica.
+En segundo lugar busco procesos que se estén ejecutando en segundo plano y/o de manera periódica.
 
 ```bash
 #!/bin/bash
@@ -167,13 +170,13 @@ while true; do
 done
 ```
 
-No encuento nada interesante (asumo que no existen tareas cron), así que por último veo qué servicios existen y se están ejecutando.
+No encuentro nada interesante (asumo que no existen tareas cron), así que por último veo qué servicios existen y se están ejecutando.
 
 ```bash
 systemctl --type=service | grep "running"
 ```
 
-No veo servicios fuera de lo común a excepción de `webmin.service`. Busco en internet qué hace este servicio y veo que es una herramienta de configuracion o administracíon de un sistema, al cual se puede acceder mediante **http**. Leyendo la documentación veo que se ejecuta en el puerto `10000`. 
+No veo servicios fuera de lo común a excepción de `webmin.service`. Busco en internet qué hace este servicio y veo que es una herramienta de configuración o administración de un sistema, al cual se puede acceder mediante **http**. Leyendo la documentación veo que se ejecuta en el puerto `10000`. 
 
 Ahora veo qué puertos están en escucha, pero no están expuestos.
 
@@ -193,7 +196,7 @@ Ahora desde mi navegador ingreso la url `localhost:10000` y efectivamente es web
 
 Probaremos las credenciales por defecto en primer lugar y si no, veremos qué hacer con otras credenciales. Revisando en el proceso de instalación, para [acceder al panel de webmin](https://www.liquidweb.com/blog/webmin-ubuntu/#Access%20the%20Webmin%20Panel) al finalizar la instalación, las credenciales por defecto son `root:root`. Efectivamente, estas son las credenciales e ingresamos al panel.
 
-Como nos permite administrar un equipo remoto mediante una interfáz gráfica, dentro de nuestro panel de trabajo existe una terminal interactiva que nos permite ingresar comandos en el equipo remoto.
+Como nos permite administrar un equipo remoto mediante una interfaz gráfica, dentro de nuestro panel de trabajo existe una terminal interactiva que nos permite ingresar comandos en el equipo remoto.
 
 La terminal se ubica en **Tools > Terminal** y al acceder ya somos el usuario **root**. Finalmente podemos leer el archivo `$HOME/root.txt`.
 
@@ -204,4 +207,4 @@ cat /root/root.txt
 
 Si quieres tener un acceso permanente, puedes aprovechar el `id_rsa` del usuario root y usarlo para acceder al equipo sin proporcionar contraseña.
 
-Y bueno jeje, eso fué la máquina **Psymin**, espero les haya gustado este _writeup_ y si tienes alguna recomendación, sugerencia, correción o algo que quieras decirme ve a puedes escribirme cualquiera de mis redes sociales en [contacto](/contact).
+Y bueno jeje, eso fué la máquina **Psymin**, espero les haya gustado la solución de la máquina y si tienes alguna recomendación, sugerencia, corrección o algo que quieras decirme puedes escribirme cualquiera de mis redes sociales en [contacto](/contact).

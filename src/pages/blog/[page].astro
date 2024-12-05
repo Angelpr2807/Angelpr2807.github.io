@@ -11,7 +11,7 @@ export async function getStaticPaths({ paginate }) {
         params: { slug: post.slug },
         props: post,
     })), {
-            pageSize : LIMIT_POSTS
+            pageSize : LIMIT_POSTS + 1
         }); 
 }
 
@@ -43,78 +43,68 @@ const postsPerPage = posts.sort(
 </Pager>
 
 <style>
-ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-ul li {
-    width: calc(50% - 1rem);
-}
-ul li * {
-    text-decoration: none;
-    transition: 0.2s ease;
-}
-ul li:first-child {
-    width: 100%;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-ul li:first-child img {
-    width: 100%;
-}
-ul li:first-child .title {
-    font-size: 2.369rem;
-}
-ul li img {
-    margin-bottom: 0.5rem;
-    border-radius: 12px;
-}
-ul li a {
-    display: block;
-}
-.title {
-    margin: 1rem 0 .5rem 0;
-    color: var(--foreground-white);
-    line-height: 1;
-}
-.date, .description {
-    margin: .5rem 0;
-    color: var(--gray);
-    font-family: "Atkinson","monospace";
-}
-ul li a:hover h4,
-.description {
-    color: var(--foreground);
-}
-ul li a:hover .date {
-    color: var(--blue);
-}
-
-ul a:hover img {
-    box-shadow: var(--box-shadow);
-}
-
-.description {
-    font-size: 1rem;
-}
-
-@media (max-width: 720px) {
     ul {
-        gap: 0.5em;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
     }
     ul li {
-        width: 100%;
-        text-align: center;
+        width: calc(50% - 1rem);
     }
-    ul li:first-child {
-        margin-bottom: 0;
+    ul li * {
+        text-decoration: none;
+        transition: 0.2s ease;
     }
-    ul li:first-child .title {
-        font-size: 1.563em;
+    ul li img {
+        margin-bottom: 0.5rem;
+        border-radius: 12px;
     }
-}
+    ul li a {
+        display: block;
+    }
+    li:hover h3 {
+        border-left: 3px solid var(--red);
+        padding-left: 1rem;
+    }
+    .title {
+        margin: 1rem 0 .5rem 0;
+        color: light-dark(var(--foreground-light), var(--foreground));
+        line-height: 1;
+    }
+    .date, .description {
+        margin: .5rem 0;
+        font-family: "Atkinson","monospace";
+    } 
+    ul li a .date {
+        color: var(--gray);
+    }
+    ul li a:hover .date {
+        color: var(--blue);
+    }
+
+    ul a:hover img {
+        box-shadow: var(--box-shadow);
+    }
+
+    .description {
+        font-size: 1rem;
+        color: light-dark(var(--foreground-light), var(--foreground-white));
+    }
+
+    @media (max-width: 720px) {
+        ul {
+            gap: 2rem;
+        }
+        ul li {
+            width: 100%;
+            text-align: center;
+        } 
+        li h3 {
+            width: fit-content;
+            margin: auto;
+        }
+    }
 </style>

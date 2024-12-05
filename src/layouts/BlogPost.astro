@@ -5,6 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import PageHeaders from '../components/PageHeaders.astro';
+import "remark-github-blockquote-alert/alert.css";
 
 type Props = CollectionEntry<'blog'>['data'];
 
@@ -23,13 +24,6 @@ const headings = posts.filter(post => post.frontmatter.title === title)
 ---
 
 <script>
-document.addEventListener("click", e => {
-    if (!e.target.matches("a.back")){
-        return;
-    }
-    history.back();
-})
-
 document.addEventListener("DOMContentLoaded", () => {
     // validando si se puede acceder a la api de clipboard
     // borrar el navigator.permisions en caso de manejarlo con el "else"
@@ -83,8 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		<style>
 			main {
                 max-width: 100%;
-                color: var(--foreground);
-                background-color: var(--background);
                 margin: auto;
 			}
 			.hero-image {
@@ -141,6 +133,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 p {
                     margin: 2rem 0;
+                }
+                
+                .markdown-alert {
+                    margin-bottom: 2rem;
+                    margin-top: 2rem;
+                    padding: 1rem;
+                }
+
+                .markdown-alert p {
+                    margin: .5rem 0;
+                    font-size: clamp(0.6944rem, 0.4908rem + 1.0184vw, .9rem);
+                }
+
+                p.markdown-alert-title {
+                    margin: 0;
+                    font-weight: bold;
+                    font-size: var(--font--1);
                 }
             }  
 
@@ -203,9 +212,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     )
                     }  
                     <slot />
-                    <a class="back" aria-label="Página anterior"><span class="icon">keyboard_return</span> Volver</a>
+                    <a class="back" href="/blog/1" aria-label="Página anterior"><span class="icon">keyboard_return</span>Volver</a>
 				</div>
-                {headings.length !== 0 && <PageHeaders pageHeadings={headings} />}
+                {headings.length >= 0 && <PageHeaders pageHeadings={headings} />}
 			</article>
 		</main>
 		<Footer />
