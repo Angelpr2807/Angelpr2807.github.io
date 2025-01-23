@@ -23,7 +23,7 @@ import { SITE_TITLE, SITE_DESCRIPTION, AKA, IMAGES } from '../consts';
             </div>
             <section class="content-container">
                 <div class="desc-wraper">
-                    <h2>Angel Perez Ravelo AKA "{AKA}"</h2>
+                    <h2>Angel Perez Ravelo{ AKA ? ` AKA ${AKA}` : "" }</h2>
                     <p>
                         Soy analista de seguridad (Hacker ético). Como profesional de la seguridad informática, mi enfoque es identificar y explotar vulnerabilidades en sistemas informáticos y redes para reforzar su seguridad con el objetivo de prevenir ataques con intenciones maliciosas. Tengo conocimientos en <em><a href="https://blog.invgate.com/es/red-team" target="_blank" rel="noopener noreferrer">Red Team</a></em> (parte ofensiva) y <em><a href="https://www.esedsl.com/blog/concepto-bug-bounty-que-es-y-por-que-lo-necesitamos" target="_blank" rel="noopener noreferrer">Bug & Bounty</a></em> (recompensas por errores).
                         Escribo artículos donde comparto mi conocimiento y experiencia sobre herramientas de <i>pentesting</i>, guías, 
@@ -34,6 +34,25 @@ import { SITE_TITLE, SITE_DESCRIPTION, AKA, IMAGES } from '../consts';
                     <img src=`/${IMAGES.avatar}` alt="Angel Perez Ravelo">
                 </div>
             </section> 
+            <section class="content-simple">                
+                <h3>Agradecimientos</h3>
+                <p>En la creación de este blog utilicé dos recursos que aportaron un toque único a la interfaz, y quiero expresar mi gratitud a los autores de estos maravillosos aportes.</p>
+                <ul>
+                    <li>
+                        <a href="https://watchdogsfont.com/" rel="noopener noreferrer"><b>Fuente Hacked</b></a>: 
+                        Esta fuente, utilizada como principal en la <i>hero image</i>, fue creada por 
+                        <a href="https://davidlibeau.fr/" rel="noopener noreferrer">David Libeau</a>. 
+                        Está inspirada en el videojuego <i>Watch Dogs</i> y se encuentra licenciada bajo 
+                        <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener noreferrer">CC BY 4.0</a>.
+                    </li>
+                    <li>
+                        <a href="https://codepen.io/mattgrosswork/pen/VwprebG" rel="noopener noreferrer"><b>Efecto glitch</b></a>: 
+                        La animación que acompaña mi nombre en la <i>hero image</i> y en las páginas de error (404) fue diseñada por 
+                        <a href="https://codepen.io/mattgrosswork/" rel="noopener noreferrer">Matt Gross</a>. 
+                        Este recurso me encanta por su atractivo visual y encaja perfectamente con la estética que quería darle a mi blog.
+                    </li>
+                </ul>
+            </section>
         </main>
 		<Footer />
 	</body>
@@ -79,6 +98,13 @@ h2 {
     font-size: var(--font--1);
 }
 
+.content-simple {
+    max-width: 1000px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 3rem 0;
+}
+
 .content-container {
     max-width: 1000px;
     width: 90%;
@@ -110,6 +136,10 @@ h2 {
     }
 }
 
+li {
+    margin-top: 1.5rem;
+}
+
 @media screen and (min-width: 768px){
     .content-container {
         width: 60%;
@@ -120,6 +150,10 @@ h2 {
         .image-container {
             padding: 0;
         }
+    }
+
+    .content-simple {
+        width: 60%;
     }
 }
 </style>

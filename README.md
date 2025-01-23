@@ -1,6 +1,6 @@
 # Mi Blog Personal
 
-![logo](/favicon.svg)
+![logo](./public/favicon.svg)
 
 ¡Bienvenido a mi blog! Aquí comparto temas variados como hacking, programación, recursos de tecnología y mucho más.
 

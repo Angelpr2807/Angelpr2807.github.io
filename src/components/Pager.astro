@@ -1,4 +1,5 @@
 ---
+// Posts pager
 import BaseHead from './BaseHead.astro';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
@@ -47,18 +48,18 @@ const { prev, next, pages, current } = Astro.props;
             }
 		</style>
 	</head>
-	<body>
-		<Header />
-		<main>
+    <body>
+        <Header />
+        <main>
             <h1>{current ? `Página ${current}`: "Artículos recientes"}</h1>
             <div id="search"></div>
-			<section>
+            <section>
                 <slot />
-        <PagerButtons limit={pages} prev={prev} next={next} current={current} />
+                <PagerButtons limit={pages} prev={prev} next={next} current={current} />
             </section>
-		</main>
-		<Footer />
-	</body>
+        </main>
+        <Footer />
+    </body>
 </html>
 
 <script is:inline>

@@ -2,8 +2,9 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = 'Angel Perez Ravelo';
-export const AKA = 'Hunter\'s Dream';
-export const SITE_DESCRIPTION = `${SITE_TITLE} [aka ${SITE_TITLE}]. Soy un estudiante y apasionado por el mundo de la ciberseguridad. Me encuentro cursando la universidad y me encanta lo que hago.`;
+//export const AKA = 'Hunter\'s Dream';
+export const AKA = null;
+export const SITE_DESCRIPTION = `${SITE_TITLE}. Soy un estudiante y apasionado por el mundo de la ciberseguridad. Me encuentro cursando la universidad y me encanta lo que hago.`;
 export const SOCIAL_LINKS = {
     linkedin: "https://www.linkedin.com/in/angelperezravelo/",
     github: "https://github.com/Angelpr2807",

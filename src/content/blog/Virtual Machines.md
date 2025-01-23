@@ -87,7 +87,7 @@ Ahora solo guarda tus cambios con el botón OK de la parte inferior y para inici
 
 En este punto ya puedes darle a finalizar o explorar las configuraciones. Posteriormente ahondaré en las configuraciones que nos quedan pendientes con la configuración avanzada y explicaré por secciones.
 
-### Exportar / Importar una VM
+### Exportar e Importar VMs
 
 Si tienes una máquina virtual en una computadora o servidor y quieres pasarlo a otro dispositivo, no es necesario crearla nuevamente y configurarla, simplemente puedes exportar la máquina en formato `.ova` o `.ovf`. Luego ese mismo archivo se puede importar en el otro dispositivo y tendrás la máquina en el estado en el que la hayas exportado. Las configuraciones de la máquina virtual (como RAM, red, CPU, etc.) se pueden conservar al exportar, así que no te preocupes por eso.
 
@@ -196,7 +196,7 @@ Ahora solo queda configurar tu VM para que use esta red.
 
 ## Snapshots (instantáneas)
 
-En la sección de [exportar e importar VMs](#Exportar-/-Importar-una-VM) mencioné que si se producía un error podías recuperar tu máquina importando un .ovf o .ova de respaldo que tengas, pero esto tiene algunas limitaciones, por ejemplo, si a partir de este respaldo hiciste configuraciones adicionales, instalaste programas, agregaste usuarios u otro tipo de acciones, estas no se guardarán y se perderá todo el progreso.
+En la sección de [exportar e importar VMs](#exportar-e-importar-vms) mencioné que si se producía un error podías recuperar tu máquina importando un .ovf o .ova de respaldo que tengas, pero esto tiene algunas limitaciones, por ejemplo, si a partir de este respaldo hiciste configuraciones adicionales, instalaste programas, agregaste usuarios u otro tipo de acciones, estas no se guardarán y se perderá todo el progreso.
 
 Las snapshots entran a nuestro rescate en estos casos, ya que podemos guardar el estado de nuestra máquina en cualquier punto. En caso de que ocurran fallos o malas configuraciones, puedes volver a estas instantáneas y recuperar tu progreso.
 

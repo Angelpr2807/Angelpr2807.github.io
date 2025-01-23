@@ -5,10 +5,11 @@
   display: inline-block;
   color: #fff;
   z-index: 2;
-  letter-spacing: 10px;
+  /*letter-spacing: 5px;*/
 
   /* Bright things in dark environments usually cast that light, giving off a glow */
   filter: drop-shadow(0 1px 3px);
+    padding: 0;
 }
 
 .demo {
@@ -18,6 +19,7 @@
 
 .layers {
     position: relative;
+    padding: 0;
 }
 
 .layers::before,
@@ -459,16 +461,19 @@
 
 .glitch span {
   animation: paths 5s step-end infinite;
+    width: fit-content;
 }
 
 .glitch::before {
   animation: paths 5s step-end infinite, opacity 5s step-end infinite,
     font 8s step-end infinite, movement 10s step-end infinite;
+    width: fit-content;
 }
 
 .glitch::after {
   animation: paths 5s step-end infinite, opacity 5s step-end infinite,
     font 7s step-end infinite, movement 8s step-end infinite;
+    width: fit-content;
 }
 
 .hero-container {
@@ -485,4 +490,3 @@
   opacity: 0.5;
   filter: blur(5px);
 }
-

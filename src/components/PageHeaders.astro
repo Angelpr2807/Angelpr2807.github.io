@@ -1,4 +1,5 @@
 ---
+// Side bar menu, table of contents
 export type Props = {
     pageHeadings : Array<{ depth: number; slug: string; text: string }[]>
 }
@@ -29,7 +30,7 @@ const toc = pageHeadings.reduce((array, heading) => {
                         <ol>
                             {h.subheadings.map((sub) => (
                             <li>
-                                <a class="toc-link" href={`#${sub.slug}`}>{sub.text}</a>
+                                <a class="toc-link sub-link" href={`#${sub.slug}`}>{sub.text}</a>
                             </li>
                             ))}
                         </ol>
@@ -46,7 +47,6 @@ const toc = pageHeadings.reduce((array, heading) => {
         display: block;
         position: sticky;
         top: 7rem;
-        padding-left: 1rem;
         max-height: 77.5vh;
         width: 100%;
         max-width: 200px;
@@ -62,38 +62,48 @@ const toc = pageHeadings.reduce((array, heading) => {
     }
 
     nav.toc > ol {
-        border-left: 2px solid rgba(var(--box-shadow-color), 0.4);
-        padding-left: .15rem;
         position: relative;
-        padding: 0 0 0 1.2rem;
+        padding: 0;
+
+        &:before {
+            position: absolute;
+            content: "";
+            width: 2px;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background-color: rgba(var(--box-shadow-color), .5);
+        }
     }
     ol {
         list-style-type: none;
-        padding-left: 1rem;
+        padding: 0rem;
     }
     a {
         font-size: .85rem;
         display: block;
         text-decoration: none;
-        padding: 0.25rem .5rem .25rem 0;
-        color: var(--foreground);
-        opacity: 0.8;
-        transition: all .25s linear;
+        text-align: left;
+        color: light-dark(var(--foreground-light), --foreground);
+        opacity: 0.65;
+        transition: all .35s linear;
+        padding: .3rem 0 .3rem 1rem ; 
+
+        &:hover {
+            color: var(--purple-dark);
+            text-decoration: underline;
+        }
+
+        &.sub-link {
+            padding-left: 2.5rem;
+        }
     }
 
     a.active {
-        color: var(--purple-dark);
+        color: light-dark(var(--foreground-light), --foreground);
         opacity: 1;
-
-        &::before {
-            content: "";
-            width: 2px;
-            height: 35.19px;
-            margin-top: -.25rem;
-            position: absolute;
-            left: -2px;
-            border-left: 2px solid rgba(var(--box-shadow-color));
-        }
+        background-color: var(--purple-dark-transparent);
+        border-left: 2px solid var(--purple-dark);
     }
 
     @media screen and (max-width: 1250px){
@@ -108,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function addIntersectionObserver() {
         const observer = new IntersectionObserver((sections) => {
             sections.forEach((section) => {
-                const heading = section.target.querySelector('h2, h3, h4, h5');
+                const heading = section.target.querySelector('h2, h3');
                 if (!heading) return;
                 const id = heading.getAttribute('id');
 
@@ -118,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Add/remove the .active class based on whether the
                 // section is visible
-                const addRemove = section.intersectionRatio > 0 ? 'add' : 'remove';
+                const addRemove = section.intersectionRatio > 0  ? 'add' : 'remove';
                 link.classList[addRemove]('active');
             });
         });

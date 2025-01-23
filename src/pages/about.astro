@@ -5,7 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 const title="Sobre mí";
-const description=`Hola, soy Angel Perez Ravelo (AKA ${SITE_TITLE}). Soy un estudiante de ingeniería en sistemas e informática y actualmente me especializo en el área de hacking ético y la ciberseguridad ofensiva. Empecé en el área de la tecnología con el desarrollo de aplicaciones web, pero ahondando cada vez más en otras áreas, encontré el de la ciberseguridad y actualmente me especializo en ese área.`;
+const description=`Hola, soy Angel Perez Ravelo${ AKA ? `AKA (${AKA})` : ""}. Soy un estudiante de ingeniería en sistemas e informática y actualmente me especializo en el área de hacking ético y la ciberseguridad ofensiva. Empecé en el área de la tecnología con el desarrollo de aplicaciones web, pero ahondando cada vez más en otras áreas, encontré el de la ciberseguridad y actualmente me especializo en ese área.`;
 const pubDate=new Date('May 28 2024');
 const updatedDate=null;
 ---
@@ -108,7 +108,7 @@ const updatedDate=null;
                         <img src=`/${IMAGES.avatar}` alt="Angel Perez Ravelo">
                     </div>
                     <p>
-                        Hola, soy Angel Perez Ravelo (AKA <b>{AKA}</b>). Soy un estudiante de ingeniería en sistemas e informática y actualmente me especializo en el área de <b>hacking ético</b> y la <b>ciberseguridad ofensiva</b>. Empecé en el área de la tecnología con el desarrollo de aplicaciones web, pero ahondando cada vez más en otras áreas, encontré el de la ciberseguridad y actualmente me especializo en ese área.
+                        Hola, soy Angel Perez Ravelo<b>{ AKA ? ` AKA (${AKA})` : ""}</b>. Soy un estudiante de ingeniería en sistemas e informática y actualmente me especializo en el área de <b>hacking ético</b> y la <b>ciberseguridad ofensiva</b>. Empecé en el área de la tecnología con el desarrollo de aplicaciones web, pero ahondando cada vez más en otras áreas, encontré el de la ciberseguridad y actualmente me especializo en ese área.
                     </p>
                     <p>
                         Tengo un <a href="/blog/" target="_blank">blog</a> en el que escribo artículos sobre herramientas de hacking, tips <i>tech</i>, linux, ciberseguridad, programación, entre otros. Los artículos son en ciertos casos muy técnicos por la naturaleza de algunos temas, pero trato de hacerlos lo más accesibles de entender. Si están interesados en colaborar con este proyecto estaría encantado de recibir su apoyo y trabajar con ustedes, en el apartado de <a href="/contact" target="_blank">contacto</a> puedes encontrar varios métodos para comunicarte conmigo.
