@@ -168,9 +168,9 @@ user% firefox
 
 En este caso estamos ejecutando el firefox del servidor pero en nuestro entorno, no es muy óptimo para multimedia, pero es muy bueno.
 
-3. Cuando queramos acceder a otro servidor que no está conectado a internet, mediante otro que si acepta conexiones externas podemos usar el parámetro `-t`.
+3. Cuando queramos acceder a otro servidor que no tiene un puerto expuesto a la red o solo lo tiene a ciertos equipos, podemos hacer un tunel del puerto que no esta expuesto a nuestro equipo local con el parámetro `-L`.
 
-En este caso queremos conectarnos al server2, pero solo tenemos acceso al servidor1, entonces podemos hacer lo siguiente:
+En este caso queremos conectarnos al server2 (`10.8.5.126:22`), pero solo tenemos acceso al servidor1 (`10.8.5.128`), entonces podemos hacer lo siguiente:
 
 ```bash
 ssh -L 2020:10.8.5.126:22 user@10.8.5.128
